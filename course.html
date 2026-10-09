@@ -6,6 +6,7 @@
 <title>課程內容 · 用 Vibe Coding 做出會員留言部落格</title>
 <link rel="stylesheet" href="assets/styles.css">
 <script src="assets/slides.js" defer></script>
+<script src="assets/diagrams.js" defer></script>
 </head>
 <body >
 <header><span>VIBE CODING 實作課 · 60 分鐘</span>
@@ -17,81 +18,68 @@
 <main>
 
 <section class="slide protected" id="course">
-<div class="label">01 · 使用者視角 vs 工程師視角</div>
-
-<h2>同一個部落格，兩種工作流程</h2>
-
-<div class="grid">
-<div class="block">
-<h3>使用者視角</h3>
-
-<ol><li>進入部落格</li><li>用 LINE 登入</li><li>發表留言</li></ol>
-</div>
-
-<div class="block">
-<h3>工程師視角</h3>
-
-<ol><li>定義部落格功能</li><li>定義會員與註冊功能</li><li>實作與測試留言</li><li>串接 LINE Login</li></ol>
-</div>
-</div>
-
-<p class="lead">我們用 AI，把使用者的需求一步步變成可以操作的網站。</p>
-
-<aside class="note">先展示成品，再切換到工程師視角。開發順序不同於使用者操作順序。這堂課以具備會員與留言功能的部落格為案例。</aside>
+<h2 class="visually-hidden">同一個部落格，兩種視角</h2>
+<figure class="course-illustration">
+<a href="assets/images/user-engineer-perspectives.png" target="_blank" rel="noopener noreferrer" aria-label="開啟使用者與工程師視角圖解原圖">
+<img src="assets/images/user-engineer-perspectives.png" width="1536" height="1024" alt="同一個部落格，兩種視角。使用者怎麼用：1 看文章、2 LINE 登入、3 發表留言。工程師怎麼做：1 規劃功能、2 建立會員、3 實作與測試留言、4 串接 LINE 登入。使用者在意好不好用，工程師負責讓功能運作。">
+</a>
+<figcaption>點圖可放大查看。我們用 AI，把使用者的需求一步步變成可以操作的網站。</figcaption>
+</figure>
+<aside class="note">先展示成品，再切換到工程師視角。左邊是使用順序，右邊是開發順序，兩邊不是逐項對應。會員先用測試身分驗證，再串接 LINE 登入。</aside>
 </section>
 
 <section class="slide protected">
-<div class="label">02 · 所需工具</div>
-
-<h2>開始前，準備好三項工具</h2>
-
-<div class="grid three">
-<div class="block">
-<h3>GitHub 帳號</h3>
-
-<p>存放程式碼與版本。</p>
-
-<p class="check">Git 負責版本管理。GitHub 是存放 Git 專案的平台。</p>
-</div>
-
-<div class="block">
-<h3>Netlify 帳號</h3>
-
-<p>部署網站，取得可分享的網址。</p>
-
-<p class="check">連接 GitHub，程式更新後觸發部署。</p>
-</div>
-
-<div class="block">
-<h3>Antigravity</h3>
-
-<p>用自然語言請 AI 建立與修改程式。</p>
-
-<p class="check">課前完成安裝與登入。Agent 可自由選擇，本課以 Claude 示範。</p>
-</div>
-</div>
-
-<div class="prompt"><b>課前小任務</b>請用 Antigravity 產生一個簡單網頁，並成功預覽。確認工具能使用，再開始課堂實作。</div>
-
+<h2 class="visually-hidden">三個工具，把網站做出來</h2>
+<figure class="course-illustration">
+<a href="assets/images/workshop-tools-flow.png" target="_blank" rel="noopener noreferrer" aria-label="開啟三個工具流程圖原圖">
+<img src="assets/images/workshop-tools-flow.png" width="1536" height="1024" alt="三個工具，把網站做出來。Antigravity：撰寫與編輯，和 AI 一起修改網站。接著 GitHub：紀錄與版本控制，保存每一次修改。最後 Netlify：部署與整合，讓網站上線並分享。流程：修改網站、保存版本、發佈上線。">
+</a>
+<figcaption>點圖可放大查看。用 Antigravity 修改網站，透過 Git 保存版本並推送至 GitHub，再由已連接專案的 Netlify 部署上線。</figcaption>
+</figure>
 <aside class="note">課堂先帶四個操作：開啟專案資料夾、描述需求、預覽成果、提出具體修改。完整留言與登入也需要資料庫及 LINE Login channel；講師應課前準備好設定與可部署的起始專案，或給同步實作同學設定指引。Git 本身沒有帳號。</aside>
 </section>
 
 <section class="slide protected">
-<div class="label">03 · 我們來實作吧！</div>
+<h2>建立一個新的 Git Repository</h2>
+<p class="lead">Repository（專案倉庫）是放程式檔案、記錄每次修改的地方。這裡要建立自己的新專案，和前面的 Fork 課程範例是不同的事。</p>
+<h3>1. 從 GitHub 選擇 New repository</h3>
+<ol><li>登入 GitHub，點右上角的 <strong>＋</strong>。</li><li>在選單中點 <strong>New repository</strong>。</li></ol>
+<figure class="repo-screenshot">
+<a href="assets/images/github-new-repository-menu.png" target="_blank" rel="noopener noreferrer" aria-label="放大查看 GitHub 新增 Repository 選單截圖">
+<img src="assets/images/github-new-repository-menu.png" width="1050" height="682" alt="GitHub 右上角加號選單，New repository 項目反白顯示。">
+</a>
+<figcaption>圖 1：點右上角「＋」，再選「New repository」。點圖可放大。</figcaption>
+</figure>
+<h3>2. 填寫 Repository 設定</h3>
+<ol>
+<li><strong>Owner：</strong>選擇你自己的 GitHub 帳號。</li>
+<li><strong>Repository name：</strong>輸入 <code>my-first-blog</code>。</li>
+<li><strong>Description：</strong>輸入 <code>my first blog</code>（可選填）。</li>
+<li><strong>Choose visibility：</strong>選 <strong>Public</strong>，方便課程後續部署到 Netlify。公開代表其他人能看見程式碼，請勿放密碼或金鑰。</li>
+<li><strong>Add README、Add .gitignore、Add license：</strong>依截圖保留預設（README 關閉、No .gitignore、No license）。</li>
+<li>按右下角 <strong>Create repository</strong>。</li>
+</ol>
+<figure class="repo-screenshot">
+<a href="assets/images/github-new-repository-form.png" target="_blank" rel="noopener noreferrer" aria-label="放大查看 GitHub 新增 Repository 設定表單截圖">
+<img src="assets/images/github-new-repository-form.png" width="1574" height="1579" alt="GitHub 建立 Repository 表單範例：Owner mozTheFuzz、Repository name my-first-blog、Description my first blog、Public、Add README 關閉、No .gitignore、No license，右下角 Create repository 按鈕。">
+</a>
+<figcaption>圖 2：照表單填寫。Owner 要改選你自己的帳號；Repository name 與 Description 可依課堂範例填寫。點圖可放大。</figcaption>
+</figure>
+<p class="check">完成條件：GitHub 開啟新建好的 <code>my-first-blog</code> 專案頁，網址格式為 <code>github.com/你的帳號/my-first-blog</code>。</p>
+<aside class="note">截圖中的 mozTheFuzz 是範例帳號，請使用自己的 Owner。新建空 Repository 之後，課堂再把本機專案連上它。</aside>
+</section>
 
+<section class="slide protected">
 <h2>一個讓會員註冊、留言的部落格</h2>
 
 <p class="lead">所有人可以閱讀文章，會員登入後可以發表留言。</p>
 
-<div class="flow">
-<div><strong>部落格定義</strong><small>文章、閱讀、留言</small></div>
-
-<div><strong>會員定義</strong><small>註冊、登入、權限</small></div>
-
-<div><strong>測試</strong><small>確認資料與功能</small></div>
-
-<div><strong>LINE Login</strong><small>接入真實身分</small></div>
-</div>
+<ol>
+<li><strong>部落格定義</strong>：文章、閱讀、留言</li>
+<li><strong>會員定義</strong>：註冊、登入、權限</li>
+<li><strong>測試</strong>：確認資料與功能</li>
+<li><strong>LINE Login</strong>：接入真實身分</li>
+</ol>
 
 <div class="prompt"><b>今天的完成條件</b>文章能閱讀、留言能保存、留言能辨識作者，最後使用 LINE 登入完成留言。</div>
 
@@ -99,170 +87,339 @@
 </section>
 
 <section class="slide protected">
-<div class="label">04 · 部落格功能實作</div>
-
-<h2>先定義網站需要做什麼</h2>
-
-<div class="grid">
-<div class="block">
-<h3>文章功能</h3>
-
-<p>文章列表<br>文章內容頁<br>標題、摘要與內容</p>
-</div>
-
-<div class="block">
-<h3>留言功能</h3>
-
-<p>閱讀留言<br>新增留言<br>刪除自己的留言</p>
-</div>
-</div>
-
-<div class="prompt"><b>交給 AI 的需求</b>請規劃一個班級部落格，包含文章列表、文章內容與留言區。訪客可以閱讀，登入會員才能留言。請先列出頁面、資料與實作步驟，再開始建立。</div>
-
-<aside class="note">先用範例文章，不加文章編輯後台。留言要有規則，會員功能稍後接入。</aside>
+<h2 class="visually-hidden">先定義網站需要做什麼</h2>
+<figure class="course-illustration">
+<a href="assets/images/blog-feature-circles.png" target="_blank" rel="noopener noreferrer" aria-label="開啟三大功能關係圖原圖">
+<img src="assets/images/blog-feature-circles.png" width="1536" height="1024" alt="三個大圓圈彼此以雙向箭頭連接。文章功能：文章列表、文章內容頁、標題、摘要與內容、文章內文編輯器。留言功能：閱讀留言、新增留言、刪除自己的留言。會員流程：首次登入建立會員、登入與登出、登入後才能留言、只能刪除自己的留言。">
+</a>
+<figcaption>三大功能彼此關聯：文章承載留言，會員決定留言與刪除權限。點圖可放大查看。</figcaption>
+</figure>
+<aside class="note">先完成文章列表、文章內容頁與文章內文編輯器，確認每篇文章有標題、摘要與內容。留言與會員功能稍後接入。</aside>
 </section>
 
 <section class="slide protected">
-<div class="label">04 · 部落格功能實作</div>
-
-<h2>畫面、規則與資料，各自負責什麼？</h2>
-
-<div class="grid three">
-<div class="block">
-<h3>前端</h3>
-
-<p>顯示文章、留言與輸入框。</p>
+<h2>怎麼拆解成任務？</h2>
+<p class="lead">從 1 到 6，由上往下做。完成一項、確認結果，再進入下一項。</p>
+<ol class="task-roadmap" role="list" aria-label="由上到下的六項實作任務">
+<li class="task-card task-card--article">
+<span class="task-number" aria-hidden="true">01</span>
+<div class="task-content">
+<span class="task-category">文章功能</span>
+<h3>文章列表與內容頁</h3>
+<p>每篇文章包含標題、摘要與內容；列表顯示標題與摘要。</p>
+<p class="task-done"><strong>✓ 完成條件</strong>　點擊列表中的文章，能閱讀完整內文。</p>
 </div>
-
-<div class="block">
-<h3>後端</h3>
-
-<p>處理留言請求，檢查資料與權限。</p>
+</li>
+<li class="task-card task-card--article">
+<span class="task-number" aria-hidden="true">02</span>
+<div class="task-content">
+<span class="task-category">文章功能</span>
+<h3>文章內文編輯器</h3>
+<p>加入可以編輯並儲存文章內容的編輯器。</p>
+<p class="task-done"><strong>✓ 完成條件</strong>　儲存後重新開啟文章，能看到修改結果。</p>
 </div>
-
-<div class="block">
-<h3>資料庫</h3>
-
-<p>保存文章、會員及留言。</p>
+</li>
+<li class="task-card task-card--comment">
+<span class="task-number" aria-hidden="true">03</span>
+<div class="task-content">
+<span class="task-category">留言功能</span>
+<h3>閱讀與新增留言</h3>
+<p>每篇文章有自己的留言區，先用測試會員新增留言。</p>
+<p class="task-done"><strong>✓ 完成條件</strong>　重新整理後，仍能讀到該篇文章已保存的留言。</p>
 </div>
+</li>
+<li class="task-card task-card--member">
+<span class="task-number" aria-hidden="true">04</span>
+<div class="task-content">
+<span class="task-category">會員流程</span>
+<h3>建立會員、登入與登出</h3>
+<p>首次登入建立會員，再次登入找到同一位會員。</p>
+<p class="task-done"><strong>✓ 完成條件</strong>　會員不會重複建立；登出後回到未登入狀態。</p>
 </div>
-
-<div class="prompt"><b>交給 AI 的需求</b>請建立文章與留言畫面，使用共用資料庫儲存留言。每則留言記錄文章、作者、內容與時間。請依起始專案的架構實作，並標明尚未接通的會員功能。</div>
-
-<p class="check">先看到畫面，再確認重新整理與其他瀏覽器能讀到相同資料。</p>
-
-<aside class="note">留言只存在本機瀏覽器不等於共用資料庫。未接會員時可先用開發測試資料，正式留言入口需等待會員與權限接通。</aside>
+</li>
+<li class="task-card task-card--member">
+<span class="task-number" aria-hidden="true">05</span>
+<div class="task-content">
+<span class="task-category">會員流程</span>
+<h3>限制留言資格</h3>
+<p>未登入時提示登入，登入後才能新增留言。</p>
+<p class="task-done"><strong>✓ 完成條件</strong>　登出後再次送出留言，後端也會拒絕。</p>
+</div>
+</li>
+<li class="task-card task-card--comment">
+<span class="task-number" aria-hidden="true">06</span>
+<div class="task-content">
+<span class="task-category">留言功能</span>
+<h3>刪除自己的留言</h3>
+<p>會員可以刪除自己發表的留言。</p>
+<p class="task-done"><strong>✓ 完成條件</strong>　換成另一位會員，即使直接送出刪除請求，也不能刪除別人的留言。</p>
+</div>
+</li>
+</ol>
 </section>
 
 <section class="slide protected">
-<div class="label">04 · 部落格功能實作</div>
-
-<h2>第一版完成，就先部署一次</h2>
-
-<div class="grid">
-<div class="block">
-<h3>Git + GitHub</h3>
-
-<p>保存一次修改版本。<br>把程式碼推送到遠端專案。</p>
-</div>
-
-<div class="block">
-<h3>Netlify</h3>
-
-<p>連接 GitHub 專案。<br>依架構設定建置與環境變數。</p>
-</div>
-</div>
-
-<p class="lead">取得網站網址，從手機或另一個瀏覽器開啟。</p>
-
-<div class="prompt"><b>交給 AI 的需求</b>請依現有專案整理 Netlify 部署步驟，列出前端、後端與資料庫需要的設定。秘密值放在後端環境變數，並告訴我如何確認部署成功。</div>
-
-<aside class="note">部署貫穿實作，不再另外增加一大段理論。純靜態 HTML 不足以獨自完成安全登入與多人共用留言，需要相容的後端函式或外部後端服務與資料庫。</aside>
-</section>
-
-<section class="slide protected">
-<div class="label">05 · 會員功能實作</div>
-
-<h2>先定義網站自己的會員</h2>
-
-<table>
-<thead>
-<tr><th>功能</th><th>規則</th></tr>
-</thead>
-
+<h2>這六個任務，畫面、規則與資料怎麼配合？</h2>
+<p class="lead">對照上一頁的任務編號，看看每個功能需要哪些部分一起完成。</p>
+<div class="task-table-wrap" role="region" aria-label="任務與前端、後端、資料庫的分工對照" tabindex="0">
+<table class="task-responsibilities">
+<thead><tr><th scope="col">對應任務</th><th scope="col">前端：畫面與操作</th><th scope="col">後端：處理規則</th><th scope="col">資料庫：保存資料</th></tr></thead>
 <tbody>
-<tr><td>註冊</td><td>建立網站會員資料，同一身分不重複建立</td></tr>
-
-<tr><td>登入</td><td>確認會員身分，維持登入狀態</td></tr>
-
-<tr><td>留言</td><td>用登入會員作為作者</td></tr>
-
-<tr><td>刪除</td><td>只允許作者刪除自己的留言</td></tr>
-
-<tr><td>登出</td><td>結束登入狀態，不能繼續新增留言</td></tr>
+<tr><th scope="row"><span class="task-ref task-ref--article">01–02 文章</span></th><td>文章列表、內容頁、編輯器</td><td>處理文章讀取與儲存</td><td>標題、摘要、內文</td></tr>
+<tr><th scope="row"><span class="task-ref task-ref--comment">03 新增留言</span></th><td>留言區、輸入框、送出按鈕</td><td>檢查留言內容與登入身分</td><td>留言內容、作者、所屬文章與時間</td></tr>
+<tr><th scope="row"><span class="task-ref task-ref--member">04–05 會員與權限</span></th><td>登入／登出按鈕、提示訊息</td><td>確認身分，判斷是否能留言</td><td>會員資料</td></tr>
+<tr><th scope="row"><span class="task-ref task-ref--comment">06 刪除留言</span></th><td>刪除按鈕、操作結果</td><td>確認是不是留言作者</td><td>刪除對應留言</td></tr>
 </tbody>
 </table>
-
-<p class="check">會員資料包含網站會員 ID、顯示名稱與外部身分識別。</p>
-
-<aside class="note">先設計網站資料與規則，最後用 LINE 當登入來源。會員註冊可以在第一次 LINE 登入成功時自動完成。</aside>
+</div>
+<figure class="responsibility-diagram">
+<div class="mermaid-output" role="img" aria-label="前端按下按鈕並送出請求，後端檢查權限。通過後更新資料庫，回傳結果讓前端顯示；不通過則拒絕操作，前端顯示提示。"></div>
+<script type="text/plain" class="mermaid-source">
+flowchart TD
+    A["前端：使用者按下按鈕"] -->|送出請求| B{"後端：權限是否通過？"}
+    B -->|通過| C[("資料庫：儲存或刪除資料")]
+    C --> D["後端：回傳處理結果"]
+    D --> E["前端：更新畫面"]
+    B -->|不通過| F["後端：拒絕操作"]
+    F --> G["前端：顯示登入或權限提示"]
+    classDef frontend fill:#edf7ef,stroke:#176b46,color:#202522
+    classDef backend fill:#edf6fc,stroke:#226b9b,color:#202522
+    classDef database fill:#fff7df,stroke:#856015,color:#202522
+    class A,E,G frontend
+    class B,D,F backend
+    class C database
+</script>
+<figcaption>按下按鈕不代表一定能操作；權限不通過，就不會修改資料庫。</figcaption>
+<p class="diagram-fallback">前端按下按鈕 → 後端檢查權限 → 通過後更新資料庫 → 回傳結果、更新畫面。若權限不通過，拒絕操作並顯示提示。</p>
+</figure>
+<aside class="note">沿用上一頁的任務編號與配色：綠色是文章、藍色是留言、黃色是會員。任務 03 可先用開發測試會員驗證，任務 04–05 接通正式會員與權限。留言只存在本機瀏覽器不等於共用資料庫；僅隱藏刪除按鈕也不能取代後端權限檢查。</aside>
 </section>
 
 <section class="slide protected">
-<div class="label">05 · 會員功能實作</div>
+<h2>你的 Agent 有沒有超能力？</h2>
+<p class="lead">Agent Skills 像是替 AI 加上專長與工作方法。下面兩個資源代表不同路線，可以先看介紹，再挑適合自己的。</p>
+<div class="grid">
+<div class="block skill-route skill-route--superpowers">
+<h3>路線一｜Superpowers</h3>
+<p>完整的開發方法與流程：先釐清需求、整理計畫，再逐步實作、測試與檢查。</p>
+<p><a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer">查看 obra/superpowers</a></p>
+</div>
+<div class="block skill-route skill-route--matt">
+<h3>路線二｜Matt Pocock Skills</h3>
+<p>一組小型、可調整及組合的工程技能，依需要挑選加入 Agent 的工作方式。</p>
+<p><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener noreferrer">查看 mattpocock/skills</a></p>
+</div>
+</div>
+<p class="check">它們是兩種技能資源的取向，不是互斥的 Agent 陣營。初學時先理解概念即可；安裝方式會依使用的 Agent 而不同。</p>
+<h3>延伸影片</h3>
+<div class="video-frame skill-video"><iframe src="https://www.youtube-nocookie.com/embed/RkWlEkPkxXo?start=112" title="Agent Skills 延伸影片，從 1 分 52 秒開始" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<p class="video-link"><a href="https://www.youtube.com/watch?v=RkWlEkPkxXo&amp;t=112s" target="_blank" rel="noopener noreferrer">在 YouTube 從 1:52 開始觀看延伸影片</a></p>
+<div class="prompt"><strong>本範例使用 Claude + Superpowers</strong>
+<p>在 Claude Code 中開啟外掛安裝介面，執行以下指令：</p>
+<pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
+<p class="check">安裝完成後重新啟動 Claude Code，開啟新對話，再繼續「Vibe Coding 吧！」。</p>
+</div>
+</section>
 
-<h2>先用測試身分，接通會員與留言</h2>
+<section class="slide protected">
+<h2>Vibe Coding 吧！</h2>
+<p class="lead">把需求一次說清楚，再跟 AI 一起把任務逐項完成。以下 Prompt 可以直接貼到 Antigravity。</p>
+<div class="prompt vibe-prompt">
+<p>複製以下 Markdown Prompt，貼到 Claude Code 開始實作：</p>
+<pre class="markdown-prompt"><code>## 給 AI 的完整需求
 
-<div class="prompt"><b>交給 AI 的需求</b>請實作會員資料與留言權限。先提供僅限開發環境的測試會員 A、B，用來驗證註冊、登入、登出。後端用登入狀態決定作者，並檢查刪除權限。LINE 串接後替換測試登入，正式環境必須關閉測試入口。</div>
+### 除錯與修改原則
+
+- 遇到非預期行為，先找出根本原因並附證據，確認後再修改，不做嘗試性修改。
+- 一次只做一個修改並驗證；沒效就先還原，再試下一個，不可疊加。
+- 每個保留的修改都要能證明必要（拿掉會重現問題），否則移除。
+- 每個任務完成時逐檔列出修改與理由，與任務無關的修改要標示。
+- 不用部署設定（netlify.toml 等）繞過本機工具的問題；非改不可先問我。
+
+我要實作一個可以讓會員留言的部落格功能，共有三大功能：
+
+### 三大功能
+
+1. **文章功能：**文章列表、文章內容頁；每篇文章有標題、摘要與內容；提供文章內文編輯器。
+2. **留言功能：**閱讀留言、新增留言、刪除自己的留言。
+3. **會員流程：**首次登入建立會員、登入與登出、登入後才能留言、只能刪除自己的留言。
+
+### 部署條件
+
+這個網站先在本地端測試，之後會部署到 Netlify。我不想串接額外服務；請選用能搭配 Netlify 的前端、後端與資料庫。
+
+請依照以下順序，把任務詳細拆解並逐一實作。每完成一項，先說明修改內容與驗收方式；確認完成條件後再進行下一項，不要一次跳過多個任務。
+
+### 任務 1｜文章列表與內容頁
+
+- 每篇文章包含標題、摘要與內容；文章列表顯示標題與摘要。
+- 完成條件：點擊列表中的文章，能閱讀完整內文，並能返回列表。
+
+### 任務 2｜文章內文編輯器
+
+- 提供編輯文章標題、摘要與內文的方式，並能儲存修改。
+- 完成條件：儲存後重新開啟文章，能看到最新內容。
+
+### 任務 3｜閱讀與新增留言
+
+- 每篇文章有自己的留言區，能閱讀留言並新增留言。
+- 完成條件：留言屬於正確文章，儲存後仍能讀取。
+
+### 任務 4｜會員建立、登入與登出
+
+- 首次登入時建立會員，再次登入時辨識為同一位會員；提供登出功能。
+- 完成條件：會員不會重複建立，登出後登入狀態結束。
+
+### 任務 5｜只有登入會員能留言
+
+- 未登入使用者不能新增留言；登入會員才能留言。
+- 完成條件：未登入時後端拒絕留言並提示登入，不能只靠隱藏畫面按鈕阻擋。
+
+### 任務 6｜會員只能刪除自己的留言
+
+- 提供刪除本人留言的功能，後端要檢查留言作者。
+- 完成條件：留言作者可以刪除；其他會員即使直接送出刪除請求也會被拒絕。
+
+### 實作原則
+
+先檢查目前專案架構並沿用現有技術。每一項完成後，告訴我如何操作驗收；遇到不確定的設計，先提出問題，不要自行假設。請勿將密碼、金鑰等秘密寫入前端程式碼。
+</code></pre>
+</div>
+<aside class="note">帶學員先貼上需求，請 AI 回覆任務計畫；再從任務 1 開始逐項實作與驗收。若課堂時間有限，可由講師逐項複製單一任務，示範「提出需求 → 查看修改 → 驗收 → 修正」。</aside>
+</section>
+
+<section class="slide protected">
+<h2>本地端 vs 雲端</h2>
+<p class="lead">先在自己的電腦試做與修改，再把完成的網站部署到網路上。</p>
+<figure class="course-illustration local-cloud-illustration">
+<a href="assets/images/local-vs-cloud.png" target="_blank" rel="noopener noreferrer" aria-label="放大查看本地端與雲端對照圖">
+<img src="assets/images/local-vs-cloud.png" width="1536" height="1024" alt="先在本地測試，再部署到雲端。本地端是自己的電腦，使用 npm run dev 開發、預覽和修改，只有這台電腦看得到。完成後部署到 Netlify 雲端，取得網址後可以分享給別人。">
+</a>
+<figcaption>本地端適合開發與測試；完成後再部署到 Netlify，取得網址分享。</figcaption>
+</figure>
+<h3>在本地端啟動網站</h3>
+<ol>
+<li>用 Antigravity 開啟課程專案資料夾。</li>
+<li>開啟這個資料夾的終端機（Terminal），輸入：</li>
+</ol>
+<pre class="command-line"><code>npm run dev</code></pre>
+<ol start="3"><li>等終端機顯示本地網址（通常以 <code>http://localhost:</code> 開頭），按住 Command／Ctrl 再點網址，或複製到瀏覽器開啟。</li><li>要停止網站時，回到終端機按 <code>Ctrl + C</code>。</li></ol>
+<h3>5. 推送到 GitHub</h3>
+<p>本地測試完成後，在同一個專案資料夾的終端機，依序執行：</p>
+<pre class="command-line"><code>git add .
+git commit -m "完成第一版"
+git push origin main</code></pre>
+<ul>
+<li><code>git add .</code>：準備提交目前的檔案修改。</li>
+<li><code>git commit</code>：把這次修改記成一個版本。</li>
+<li><code>git push origin main</code>：把 <code>main</code> 分支的版本推送到 GitHub。</li>
+</ul>
+<p class="check">若你的分支不是 <code>main</code>，先執行 <code>git branch --show-current</code> 查看分支名稱，再把推送指令最後的 <code>main</code> 換成該名稱。推送成功後，確認 GitHub Repository 出現最新修改。</p>
+<p class="check">如果這個 Repository 已連接 Netlify，推送後 Netlify 會依照專案設定開始部署。</p>
+<p class="check">如果出現「missing script: dev」，代表這個專案沒有設定啟動指令；把訊息交給 AI，請它檢查專案設定並告訴你正確啟動方式。</p>
+<aside class="note">「本地端」是自己的電腦，「雲端」是連上網路後可分享的部署環境。npm run dev 需在有 dev 指令的專案資料夾執行；各專案實際顯示的本地網址與連接埠可能不同。</aside>
+</section>
+
+<section class="slide protected">
+<h2>串連到 Netlify</h2>
+<p class="lead">把 GitHub Repository 交給 Netlify，之後推送新版本，就能自動重新部署網站。</p>
+
+<h3>1. 開始新增 Netlify 專案</h3>
+<p>登入 Netlify，在專案頁點 <strong>Add new project</strong>。</p>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-add-project.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-add-project.png" width="706" height="282" alt="Netlify Projects 頁面的 Add new project 按鈕。"></a>
+<figcaption>圖 1：點選 Add new project。點圖可放大。</figcaption>
+</figure>
+
+<h3>2. 選擇從 Git Repository 匯入</h3>
+<p>在新增專案方式中，選 <strong>Import a Git repository</strong>，再選 <strong>GitHub</strong>。</p>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-import-github.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-import-github.png" width="588" height="260" alt="Netlify Import a Git repository 頁面上的 GitHub 選項。"></a>
+<figcaption>圖 2：選擇 GitHub 作為程式碼來源。</figcaption>
+</figure>
+
+<h3>3. 找到剛建立的 Repository</h3>
+<p>確認選對自己的 GitHub Owner，在搜尋欄輸入 <code>my-first-blog</code>，再點選該 Repository。</p>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-select-repository.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-select-repository.png" width="2048" height="596" alt="Netlify 選擇 GitHub Repository 的畫面，搜尋 my-first，結果顯示 my-first-blog。"></a>
+<figcaption>圖 3：選擇自己帳號底下的 my-first-blog。圖中的 mozTheFuzz 是示範帳號，請改選自己的 Owner。</figcaption>
+</figure>
+
+<h3>4. 確認專案設定並部署</h3>
+<ol>
+<li><strong>Team：</strong>選擇課堂指定或自己要使用的 Netlify Team。</li>
+<li><strong>Project name：</strong>設定一個可用的名稱；這會影響 Netlify 網址。</li>
+<li><strong>Branch to deploy：</strong>先選 <code>main</code>，若你的程式放在其他分支，就選該分支。</li>
+<li><strong>Build settings：</strong>確認建置命令與 Publish directory。若不確定，先沿用 Netlify 偵測的設定或請講師協助，不要猜填。</li>
+<li>往下找到部署按鈕，點選開始部署。</li>
+</ol>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-configure-deploy.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-configure-deploy.png" width="2048" height="1205" alt="Netlify 設定 my-first-blog 部署的畫面，包含 Team、Project name、Branch to deploy、Build settings 與網站摘要。"></a>
+<figcaption>圖 4：檢查 Team、專案名稱、部署分支和建置設定，再開始部署。畫面下方還有更多設定。</figcaption>
+</figure>
+
+<h3>5. 等待部署完成，開啟網站</h3>
+<p>Netlify 會顯示建置或部署進度。等待狀態變成成功，再點專案提供的網站網址，確認頁面能正常開啟。</p>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-project-progress.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-project-progress.png" width="2048" height="1215" alt="Netlify 專案總覽，顯示 Project deploy in progress，正在從 GitHub 部署。"></a>
+<figcaption>圖 5：這張截圖顯示部署進行中；請等到部署成功後，再開啟網站網址。</figcaption>
+</figure>
 
 <div class="grid">
 <div class="block">
-<h3>會員 A</h3>
-
-<p>新增一則留言。<br>能刪除自己的留言。</p>
+<h3>之後如何更新？</h3>
+<p>在電腦修改程式，提交並推送到已連接的 GitHub 分支。Netlify 會依專案設定重新部署，完成後用同一個網址查看新版。</p>
 </div>
-
 <div class="block">
-<h3>會員 B</h3>
-
-<p>看到 A 的留言。<br>不能刪除 A 的留言。</p>
+<h3>還沒看到網站內容？</h3>
+<p>確認 Repository 裡已有網站程式碼，且 Build settings 指向正確的建置方式與輸出資料夾。若部署失敗，打開 Deploys 查看錯誤紀錄，截圖請講師協助。</p>
 </div>
 </div>
-
-<aside class="note">這裡不另做一套帳號密碼登入。開發測試入口不能成為公開網站的登入漏洞；公開測試前須確認環境隔離或關閉入口。</aside>
+<p class="check">完成條件：Netlify 已連接自己的 <code>my-first-blog</code> Repository，部署成功，並能開啟網站網址。</p>
+<aside class="note">連接 GitHub 時，若 Netlify 要求安裝或授權 GitHub App，只授權課程需要的 Repository。截圖中的 Owner、Team 和專案名稱都是示範值，請以自己的帳號為準。Netlify 從連接的 Git Repository 自動部署；實際 Build command 與 Publish directory 會依專案而不同。官方說明：<a href="https://docs.netlify.com/start/quickstarts/deploy-from-repository/" target="_blank" rel="noopener noreferrer">Deploy from your repository</a>。</aside>
 </section>
 
 <section class="slide protected">
-<div class="label">06 · 測試</div>
+<h2>串接 LINE Login</h2>
+<p class="lead">先讓 LINE Login 在本地端能測試，再把正式網址和環境變數設定到 Netlify。</p>
+<div class="prompt"><strong>先認識兩個網址</strong><br>本地網址（localhost）只能在自己的電腦開啟；LINE 無法直接連回 localhost。ngrok 會提供一個 HTTPS 公開網址，暫時轉接到你的本地網站。上線後則改用 Netlify 的正式網址。</div>
 
-<h2>我們怎麼知道功能真的完成了？</h2>
+<h3>需要的工具與教學</h3>
+<ul>
+<li><a href="https://login.ngrok.com/signup?grant_id=iamsog_3KRiWMG7hsKjf3g7XAyjWtCdvIK" target="_blank" rel="noopener noreferrer">建立 ngrok 帳號</a>｜<a href="https://ngrok.com/use-cases/share-localhost" target="_blank" rel="noopener noreferrer">ngrok 官方：將 localhost 分享到網路</a></li>
+<li><a href="https://developers.line.biz/en/" target="_blank" rel="noopener noreferrer">LINE Developers Console</a>｜<a href="https://developers.line.biz/en/docs/line-login/getting-started/" target="_blank" rel="noopener noreferrer">LINE Login 入門教學</a></li>
+<li><a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/" target="_blank" rel="noopener noreferrer">LINE Developers：在網站整合 LINE Login</a></li>
+</ul>
 
-<table>
-<thead>
-<tr><th>測試操作</th><th>預期結果</th></tr>
-</thead>
+<div class="line-setup-stage line-setup-stage--local">
+<h3>第一階段｜建立本地可測試環境</h3>
+<ol>
+<li>在 LINE Developers 建立 Provider，再建立 <strong>LINE Login Channel</strong>；App type 選 <strong>Web app</strong>。</li>
+<li>在電腦開啟專案，用第一個終端機啟動網站：<br><code>npm run dev</code><br>記下終端機顯示的本地連接埠（例如 3000）。</li>
+<li>依 ngrok 官方教學安裝並登入 ngrok。Authtoken 是個人憑證，只在自己的終端機設定，不要貼到聊天、前端程式或 GitHub：<br><code>ngrok config add-authtoken &lt;你的 ngrok Authtoken&gt;</code></li>
+<li>保持網站執行，另開第二個終端機，把 ngrok 連到剛才的本地連接埠：<br><code>ngrok http &lt;本地連接埠&gt;</code></li>
+<li>複製 ngrok 顯示的 HTTPS 網址。從 LINE Login Channel 設定 Callback URL，填入「ngrok HTTPS 網址 + 專案實際的回呼路徑」。先請 AI 確認專案使用的回呼路徑，再照填；不要猜路徑。</li>
+<li>將 Channel ID 和 Channel secret 放在本機伺服器環境變數（例如未提交到 Git 的 <code>.env.local</code>），由後端讀取。不要放在瀏覽器前端程式碼。</li>
+<li>用 LINE 帳號測試登入、取消授權和登出，確認流程會回到 ngrok 網址下的本地網站。</li>
+</ol>
+<p class="check">免費 ngrok 網址可能在重新啟動後改變；網址變更時，記得同步更新 LINE Login Channel 的本地 Callback URL。</p>
+</div>
 
-<tbody>
-<tr><td>未登入發表留言</td><td>後端拒絕，畫面提示登入</td></tr>
+<div class="line-setup-stage line-setup-stage--remote">
+<h3>第二階段｜設定遠端 Netlify 環境</h3>
+<ol>
+<li>把已測試的程式推送到 GitHub，確認 Netlify 連接正確的 Repository 和部署分支。</li>
+<li>在 Netlify 專案的 <strong>Environment variables</strong> 設定相同的 Channel ID 與 Channel secret。秘密值留在伺服器環境變數，不要提交到 Repository。</li>
+<li>到 LINE Login Channel 的 Callback URL 加入 Netlify 正式網址與同一條回呼路徑，例如 <code>https://你的網站.netlify.app/專案回呼路徑</code>。本地測試網址和正式網址可以分別登記。</li>
+<li>儲存環境變數後，重新部署 Netlify 專案，再用正式網站網址測試登入、取消授權與登出。</li>
+</ol>
+<p class="check">完成條件：本地 ngrok 測試與 Netlify 正式網址都能完成 LINE Login；正式環境不使用開發測試會員入口。</p>
+</div>
 
-<tr><td>會員 A 發表留言</td><td>留言顯示正確作者</td></tr>
-
-<tr><td>重新整理、換瀏覽器</td><td>仍能讀到已保存的留言</td></tr>
-
-<tr><td>會員 B 刪除 A 的留言</td><td>後端拒絕刪除</td></tr>
-
-<tr><td>空白留言、送出失敗</td><td>顯示清楚提示，不假裝成功</td></tr>
-
-<tr><td>登出後再次留言</td><td>要求重新登入</td></tr>
-</tbody>
-</table>
-
-<aside class="note">除了手動操作，也請 AI 提供對應權限檢查。僅隱藏刪除按鈕不能證明後端權限正確。</aside>
+<aside class="note">LINE Login Web app 要選 Web app 類型，並在 Channel 設定中登記 Callback URL；登入流程會把授權結果送回該網址。請確認 Channel ID／secret 只由後端使用。LINE 官方文件說明可在同一 Channel 登記多個 Callback URL。</aside>
 </section>
 
 <section class="slide protected">
-<div class="label">06 · 測試</div>
-
 <h2>遇到問題，怎麼讓 AI 協助修正？</h2>
 
 <div class="grid">
@@ -287,8 +444,6 @@
 </section>
 
 <section class="slide protected">
-<div class="label">07 · 串接 LINE Login</div>
-
 <h2>把測試身分換成 LINE 身分</h2>
 
 <div class="flow">
@@ -309,8 +464,6 @@
 </section>
 
 <section class="slide protected">
-<div class="label">07 · 串接 LINE Login</div>
-
 <h2>完成設定，跑一次真正的登入與留言</h2>
 
 <div class="prompt"><b>交給 AI 的需求</b>請將會員登入串接 LINE Login，列出 channel、回呼網址與後端環境變數設定。後端完成身分驗證並維持登入狀態，首次登入建立會員。請處理取消授權，並關閉正式環境的測試登入。</div>
@@ -330,6 +483,30 @@
 </div>
 
 <aside class="note">課前準備 LINE channel，並確認正式網址的回呼設定。先講測試，再串接，最後仍需整合測試。Git 更新觸發設定好的建置、檢查與部署；自動化測試需要額外配置。</aside>
+</section>
+
+<section class="slide protected">
+<h2>第一版完成，就先部署一次</h2>
+
+<div class="grid">
+<div class="block">
+<h3>Git + GitHub</h3>
+
+<p>保存一次修改版本。<br>把程式碼推送到遠端專案。</p>
+</div>
+
+<div class="block">
+<h3>Netlify</h3>
+
+<p>連接 GitHub 專案。<br>依架構設定建置與環境變數。</p>
+</div>
+</div>
+
+<p class="lead">取得網站網址，從手機或另一個瀏覽器開啟。</p>
+
+<div class="prompt"><b>交給 AI 的需求</b>請依現有專案整理 Netlify 部署步驟，列出前端、後端與資料庫需要的設定。秘密值放在後端環境變數，並告訴我如何確認部署成功。</div>
+
+<aside class="note">部署貫穿實作，不再另外增加一大段理論。純靜態 HTML 不足以獨自完成安全登入與多人共用留言，需要相容的後端函式或外部後端服務與資料庫。</aside>
 </section>
 
 </main>

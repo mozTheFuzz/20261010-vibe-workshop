@@ -21,7 +21,7 @@
 <h2>1. 先看準備清單</h2>
 <p class="lead">跟著七個步驟，準備好上課用的電腦，最後做出一個可以預覽的小網頁。</p>
 <ul>
-<li><strong>帳號：</strong>GitHub、Netlify，以及可登入 Antigravity 的 Google 帳號。請確認能收取驗證信。</li>
+<li><strong>帳號：</strong>GitHub、Netlify、ngrok、LINE Developers，以及可登入 Antigravity 的 Google 帳號。請確認能登入並收取驗證信。</li>
 <li><strong>軟體：</strong>Antigravity IDE、Node.js（含 npm）、Git。</li>
 <li><strong>設備：</strong>上課會使用的 Windows 或 Mac 電腦、網路與可安裝軟體的權限。</li>
 </ul>
@@ -31,7 +31,7 @@
 
 <section class="slide">
 <div class="label">課前準備 · 2 / 7</div>
-<h2>2. 建立帳號：GitHub → Netlify</h2>
+<h2>2. 建立帳號：GitHub、Netlify、ngrok、LINE Developers</h2>
 <div class="grid">
 <div class="block"><h3>先建立 GitHub 帳號</h3>
 <p>用途：存放你的網站程式與修改紀錄。</p>
@@ -41,6 +41,16 @@
 <p>用途：把網站放上網，取得可以分享的網址。</p>
 <ol><li>保持 GitHub 登入，開啟 <a href="https://app.netlify.com/signup" target="_blank" rel="noopener noreferrer">Netlify 註冊頁</a>。</li><li>選 GitHub；在授權頁確認是自己的帳號，再同意登入授權。</li><li>填寫初始設定；個人用途依自己的情況選填。遇到匯入專案，可先跳過。</li></ol>
 <p class="check">完成條件：能進入 Netlify 管理頁面。網站部署會在課堂一起進行。</p></div></div>
+<div class="grid">
+<div class="block"><h3>準備 ngrok 帳號</h3>
+<p>用途：把電腦上暫時執行的網站，透過 HTTPS 網址提供給 LINE Login 測試。</p>
+<ol><li>開啟 <a href="https://login.ngrok.com/signup?grant_id=iamsog_3KRiWMG7hsKjf3g7XAyjWtCdvIK" target="_blank" rel="noopener noreferrer">ngrok 註冊頁</a>，建立帳號並完成驗證。</li><li>登入後確認能進入 ngrok 管理頁。課堂會再帶你安裝 ngrok，並設定自己的 authtoken。</li></ol>
+<p class="check">完成條件：能登入 ngrok。authtoken 像密碼一樣保管，不要貼到公開網頁或傳給別人。</p></div>
+<div class="block"><h3>準備 LINE Developers</h3>
+<p>用途：建立 LINE Login 設定，讓網站能使用 LINE 帳號登入。</p>
+<ol><li>開啟 <a href="https://developers.line.biz/en/" target="_blank" rel="noopener noreferrer">LINE Developers</a>，用自己的 LINE 帳號登入。</li><li>進入 <a href="https://developers.line.biz/console/" target="_blank" rel="noopener noreferrer">LINE Developers Console</a>，確認能看到管理畫面。</li></ol>
+<p class="check">完成條件：能登入 Console。Provider、LINE Login Channel 與回呼網址會在課堂一起設定，現在不用先建立。</p></div>
+</div>
 <details><summary>畫面和教學不同，怎麼辦？</summary><p>若找不到跳過選項，或出現不確定的方案選擇，截下目前畫面並向講師求助，不必先完成部署。</p></details>
 </section>
 
@@ -128,6 +138,8 @@
 <fieldset class="prep-checklist"><legend>我的課前驗收清單</legend>
 <label><input type="checkbox" id="prep-check-1"> 我能登入 GitHub，並找得到自己的使用者名稱。</label>
 <label><input type="checkbox" id="prep-check-2"> 我能進入 Netlify 管理頁面。</label>
+<label><input type="checkbox" id="prep-check-ngrok"> 我能登入 ngrok，並知道 authtoken 要保密。</label>
+<label><input type="checkbox" id="prep-check-line"> 我能登入 LINE Developers Console。</label>
 <label><input type="checkbox" id="prep-check-3"> 我已登入 Antigravity，能開啟 blog-class 並使用 AI 對話。</label>
 <label><input type="checkbox" id="prep-check-4"> node -v 與 npm -v 都顯示版本號。</label>
 <label><input type="checkbox" id="prep-check-5"> git --version 顯示版本號。</label>
