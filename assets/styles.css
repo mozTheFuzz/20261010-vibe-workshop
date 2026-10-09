@@ -51,3 +51,14 @@ dialog input{width:100%;font:inherit;border:1px solid #b5c2b9;border-radius:5px;
 .site-nav a{padding:8px 12px;border-radius:6px}.site-nav a[aria-current="page"]{background:#e8f2eb;color:var(--green);font-weight:700}
 .section-link{display:inline-block;font-size:15px;padding:10px 16px;border:1px solid #b5c2b9;border-radius:6px;text-decoration:none;text-align:center}
 @media print{.site-nav,.section-link{display:none!important}}
+
+/* Preparation guide: keep supplementary instructions out of the main flow. */
+.preparation-page details{margin:16px 0;padding:16px 20px;border:1px solid var(--line);border-radius:6px}
+.preparation-page summary{cursor:pointer;font-size:20px;font-weight:700;line-height:1.6}
+.preparation-page summary:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.preparation-page h3{margin-top:24px}
+.prep-checklist{border:1px solid var(--line);border-radius:6px;padding:20px;margin:24px 0}
+.prep-checklist legend{font-size:20px;font-weight:700;padding:0 8px}
+.prep-checklist label{display:flex;align-items:flex-start;gap:12px;font-size:20px;line-height:1.7;padding:10px 0;cursor:pointer}
+.prep-checklist input{width:20px;height:20px;flex-shrink:0;margin-top:7px;accent-color:var(--green)}
+@media print{.preparation-page details::details-content{display:block}.prep-checklist{break-inside:avoid}}
