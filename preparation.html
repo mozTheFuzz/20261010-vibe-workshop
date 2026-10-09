@@ -17,20 +17,20 @@
 <main>
 
 <section class="slide" id="preparation">
-<div class="label">課前準備 · 1 / 6</div>
+<div class="label">課前準備 · 1 / 7</div>
 <h2>1. 先看準備清單</h2>
-<p class="lead">跟著六個步驟，準備好上課用的電腦，最後做出一個可以預覽的小網頁。</p>
+<p class="lead">跟著七個步驟，準備好上課用的電腦，最後做出一個可以預覽的小網頁。</p>
 <ul>
 <li><strong>帳號：</strong>GitHub、Netlify，以及可登入 Antigravity 的 Google 帳號。請確認能收取驗證信。</li>
 <li><strong>軟體：</strong>Antigravity IDE、Node.js（含 npm）、Git。</li>
 <li><strong>設備：</strong>上課會使用的 Windows 或 Mac 電腦、網路與可安裝軟體的權限。</li>
 </ul>
 <div class="prompt"><b>全部完成後，你會看到</b>瀏覽器中的「我的部落格」，而且能請 AI 把標題改成「我的第一個部落格」。</div>
-<p class="check">依序完成：建立帳號 → 設定上課工具 → 安裝必要工具 → 小練習 → 勾選驗收清單。已有帳號或工具，可直接確認能使用。</p>
+<p class="check">依序完成：建立帳號 → Fork 課程專案 → 設定上課工具 → 安裝必要工具 → 小練習 → 勾選驗收清單。已有帳號或工具，可直接確認能使用。</p>
 </section>
 
 <section class="slide">
-<div class="label">課前準備 · 2 / 6</div>
+<div class="label">課前準備 · 2 / 7</div>
 <h2>2. 建立帳號：GitHub → Netlify</h2>
 <div class="grid">
 <div class="block"><h3>先建立 GitHub 帳號</h3>
@@ -45,8 +45,39 @@
 </section>
 
 <section class="slide">
-<div class="label">課前準備 · 3 / 6</div>
-<h2>3. 設定上課工具：Antigravity</h2>
+<div class="label">課前準備 · 3 / 7</div>
+<h2>3. Fork 課程專案到自己的 GitHub</h2>
+<p class="lead">Fork 就是在自己的 GitHub 帳號下建立一份專案副本，之後可以在自己的版本上練習修改。</p>
+<h3>① 開啟老師的專案</h3>
+<p>先登入自己的 GitHub，再開啟 <a href="https://github.com/mozTheFuzz/20261010-vibe-workshop" target="_blank" rel="noopener noreferrer">mozTheFuzz / 20261010-vibe-workshop</a>。</p>
+<h3>② 選擇 Create a new fork</h3>
+<p>找到頁面右上方的 <strong>Fork</strong>，點旁邊的下拉箭頭，再選 <strong>Create a new fork</strong>。若點 Fork 後直接進入建立畫面，就繼續下一步。</p>
+<figure class="prep-screenshot">
+<a href="assets/images/github-fork-menu.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/github-fork-menu.png" alt="GitHub 專案右上方的 Fork 下拉選單，內有 Create a new fork 選項" loading="lazy"></a>
+<figcaption>圖 1：在 Fork 選單中選擇 Create a new fork。點圖片可開啟原圖放大查看。</figcaption>
+</figure>
+<h3>③ 確認副本放在自己的帳號</h3>
+<ol>
+<li><strong>Owner：</strong>選擇你自己的 GitHub 帳號。</li>
+<li><strong>Repository name：</strong>保留 <code>20261010-vibe-workshop</code>，方便跟著課程操作。</li>
+<li><strong>Description：</strong>保留原本的說明即可。</li>
+<li>保持勾選 <strong>Copy the main branch only</strong>。</li>
+<li>點右下方綠色的 <strong>Create fork</strong>，等待建立完成。</li>
+</ol>
+<figure class="prep-screenshot">
+<a href="assets/images/github-create-fork.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/github-create-fork.png" alt="Create a new fork 表單，包含 Owner、Repository name、Description、Copy the main branch only 與綠色 Create fork 按鈕" loading="lazy"></a>
+<figcaption>圖 2：Owner 要選自己的帳號，其餘保留預設，再按 Create fork。</figcaption>
+</figure>
+<h3>④ 確認 Fork 成功</h3>
+<p>新頁面的專案擁有者應該是<strong>你自己的使用者名稱</strong>，網址會是 <code>github.com/你的使用者名稱/20261010-vibe-workshop</code>。</p>
+<p class="check">完成條件：在自己的帳號下看得到專案檔案。把這個網址加入書籤，上課時會用到。</p>
+<details><summary>已經 Fork 過，或出現同名專案？</summary><p>若已經有這個課程的 Fork，直接開啟自己的副本即可。若同名專案是其他作品，請保留它並向講師確認，不必刪除原有專案。</p></details>
+<p class="check">這一步建立的是 GitHub 上的副本；後面的小練習仍在電腦上的 blog-class 資料夾進行。</p>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · 4 / 7</div>
+<h2>4. 設定上課工具：Antigravity</h2>
 <p>Antigravity 是開啟專案、和 AI 對話及修改網頁的工具。本課使用 <strong>Antigravity IDE</strong>。</p>
 <p>先開啟 <a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer">官方下載頁</a>，找到 IDE，再展開自己電腦的步驟。</p>
 <details><summary>我是 Windows：下載與安裝</summary>
@@ -55,16 +86,16 @@
 <ol><li>開啟「Apple 選單 → 關於這台 Mac」，確認晶片：M 系列選 Apple Silicon，Intel 選 Intel。</li><li>下載對應的 IDE 安裝檔。若下載頁沒有支援你的電腦，先聯絡講師。</li><li>開啟下載檔，依畫面將應用程式放入「應用程式」，再開啟 Antigravity。</li></ol><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/P3u3w96lR7U" title="Mac：安裝 Antigravity 教學影片" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="video-link"><a href="https://www.youtube.com/watch?v=P3u3w96lR7U" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 Mac 安裝示範</a></p></details>
 <h3>安裝後，Windows / Mac 都做這四步</h3>
 <ol><li>開啟 Antigravity，完成初始設定，按登入並在瀏覽器完成 Google 帳號驗證，再返回工具。</li><li>在桌面新增資料夾，命名為 <code>blog-class</code>。</li><li>在 Antigravity 選「Open Folder／開啟資料夾」，選取剛建立的 <code>blog-class</code>。若詢問是否信任，確認是自己的資料夾再繼續。</li><li>找到 AI 對話輸入框與模型選單。老師使用 Claude 示範；選單有 Claude 就選它，沒有時可先用可用的預設模型完成練習。</li></ol>
-<p class="check">完成條件：已登入、已開啟 blog-class，且能使用 AI 對話輸入框。第 5 步再一起建立網頁。</p>
+<p class="check">完成條件：已登入、已開啟 blog-class，且能使用 AI 對話輸入框。第 6 步再一起建立網頁。</p>
 <details><summary>模型選單或登入遇到問題</summary><p>Claude 是此處可選的 AI 模型，新手不需要另選一套 Agent。可用模型依帳號而異；若完全無法對話，截下錯誤訊息提供給講師。</p><p><a href="https://antigravity.google/docs/models" target="_blank" rel="noopener noreferrer">官方模型說明</a></p></details>
 </section>
 
 <section class="slide">
-<div class="label">課前準備 · 4 / 6</div>
-<h2>4. 安裝必要工具：Node.js、Git</h2>
+<div class="label">課前準備 · 5 / 7</div>
+<h2>5. 安裝必要工具：Node.js、Git</h2>
 <p>Node.js 用來執行網站開發工具；Git 用來保存程式的修改版本。兩者都要安裝。</p>
 <details><summary>我是 Windows：安裝與確認</summary>
-<h3>先安裝 Node.js</h3><ol><li>開啟 <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">Node.js 下載頁</a>，選標有 LTS 的版本與 Windows。</li><li>依第 3 步查到的系統類型選架構，下載 <strong>.msi 安裝檔</strong>。</li><li>開啟安裝檔，保留 npm 與 PATH 預設選項並完成安裝。</li><li>從開始選單搜尋「命令提示字元」，開啟後逐行輸入，每行按 Enter：</li></ol>
+<h3>先安裝 Node.js</h3><ol><li>開啟 <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">Node.js 下載頁</a>，選標有 LTS 的版本與 Windows。</li><li>依第 4 步查到的系統類型選架構，下載 <strong>.msi 安裝檔</strong>。</li><li>開啟安裝檔，保留 npm 與 PATH 預設選項並完成安裝。</li><li>從開始選單搜尋「命令提示字元」，開啟後逐行輸入，每行按 Enter：</li></ol>
 <p><code>node -v</code><br><code>npm -v</code></p>
 <p class="check">成功畫面：兩行各顯示一個版本號，而非「找不到指令」。</p>
 <h3>再安裝 Git</h3><ol><li>開啟 <a href="https://git-scm.com/install/windows" target="_blank" rel="noopener noreferrer">Git for Windows 官方下載頁</a>，選符合系統類型的 Setup 安裝檔。</li><li>執行安裝程式；不確定的設定先保留預設值，完成安裝。</li><li>關閉並重新開啟命令提示字元，輸入 <code>git --version</code>。</li></ol>
@@ -76,12 +107,12 @@
 <h3>再確認 Git</h3><ol><li>在終端機輸入 <code>git --version</code>。若顯示版本號，已完成。</li><li>若系統提示安裝開發工具，按「安裝」並等候完成。若未出現提示且 Git 仍不可用，輸入 <code>xcode-select --install</code>。</li><li>安裝完成後重新開啟終端機，再輸入 <code>git --version</code>。</li></ol>
 <p class="check">成功畫面：出現 git version 與版本號。參考 <a href="https://git-scm.com/install/mac" target="_blank" rel="noopener noreferrer">Git 官方 Mac 安裝指引</a>。</p></details>
 <p class="check">全部完成後，關閉並重新開啟 Antigravity，讓工具讀取新的安裝結果。</p>
-<details><summary>找不到指令／不懂版本名稱</summary><p>先關閉並重新開啟終端機與 Antigravity，再試一次。Windows 請使用「命令提示字元」；若使用 PowerShell 遇到 npm.ps1 限制，可改用 <code>npm.cmd -v</code>。</p><p>LTS 是長期支援版本；npm 會隨 Node.js 安裝，不必另外註冊帳號。Git 是本機軟體，與第 2 步的 GitHub 帳號分開。</p><p>仍失敗時，保留指令與完整錯誤畫面，依第 6 步向講師求助。</p></details>
+<details><summary>找不到指令／不懂版本名稱</summary><p>先關閉並重新開啟終端機與 Antigravity，再試一次。Windows 請使用「命令提示字元」；若使用 PowerShell 遇到 npm.ps1 限制，可改用 <code>npm.cmd -v</code>。</p><p>LTS 是長期支援版本；npm 會隨 Node.js 安裝，不必另外註冊帳號。Git 是本機軟體，與第 2 步的 GitHub 帳號分開。</p><p>仍失敗時，保留指令與完整錯誤畫面，依第 7 步向講師求助。</p></details>
 </section>
 
 <section class="slide">
-<div class="label">課前準備 · 5 / 6</div>
-<h2>5. 完成唯一的小練習</h2>
+<div class="label">課前準備 · 6 / 7</div>
+<h2>6. 完成唯一的小練習</h2>
 <p class="lead">建立「我的部落格」→ 在瀏覽器預覽 → 請 AI 修改標題。</p>
 <ol><li>回到 Antigravity，確認目前開啟的是 <code>blog-class</code>。</li><li>在 AI 對話框貼上下面的第一段話，等它完成檔案。</li><li>照 AI 提供的步驟預覽，確認瀏覽器顯示「我的部落格」。</li><li>回到同一個 AI 對話，貼上第二段話；完成後重新整理網頁。</li></ol>
 <div class="prompt"><b>第一次：建立網頁</b>請在目前的 blog-class 資料夾建立一個簡單的 index.html，頁面標題與主要標題都是「我的部落格」。只用 HTML 和 CSS，不需要額外套件。我是初學者，請完成檔案後，一步一步告訴我如何在瀏覽器預覽。</div>
@@ -91,8 +122,8 @@
 </section>
 
 <section class="slide">
-<div class="label">課前準備 · 6 / 6</div>
-<h2>6. 確認可以上課</h2>
+<div class="label">課前準備 · 7 / 7</div>
+<h2>7. 確認可以上課</h2>
 <p>依實際完成情況勾選；尚未完成的項目，就是需要協助的地方。</p>
 <fieldset class="prep-checklist"><legend>我的課前驗收清單</legend>
 <label><input type="checkbox" id="prep-check-1"> 我能登入 GitHub，並找得到自己的使用者名稱。</label>
@@ -100,7 +131,8 @@
 <label><input type="checkbox" id="prep-check-3"> 我已登入 Antigravity，能開啟 blog-class 並使用 AI 對話。</label>
 <label><input type="checkbox" id="prep-check-4"> node -v 與 npm -v 都顯示版本號。</label>
 <label><input type="checkbox" id="prep-check-5"> git --version 顯示版本號。</label>
-<label><input type="checkbox" id="prep-check-6"> 瀏覽器顯示「我的第一個部落格」，我已完成建立與修改。</label></fieldset>
+<label><input type="checkbox" id="prep-check-6"> 瀏覽器顯示「我的第一個部落格」，我已完成建立與修改。</label>
+<label><input type="checkbox" id="prep-check-fork"> 我的 GitHub 帳號下已有 20261010-vibe-workshop 的 Fork，並已保存網址。</label></fieldset>
 <p class="check">勾選只供自己確認，不會傳送給講師；重新載入本頁後可能重設。</p>
 <h3>卡住時，請向本課講師求助</h3>
 <p>透過收到課程通知的原聯絡管道，提供下面三項資訊：</p>
