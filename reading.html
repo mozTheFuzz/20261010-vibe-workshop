@@ -16,31 +16,106 @@
 
 <main>
 
-<section class="slide protected" id="reading">
+<section class="slide protected reading-page" id="reading">
 <div class="label">課後閱讀</div>
 
-<h2>從今天的成果，回頭理解技術</h2>
+<h2>課程裡遇到的技術名詞</h2>
+<p class="lead">先用一句話抓住概念，再回想它在部落格實作中扮演什麼角色。</p>
 
+<div class="reading-glossary">
+<article class="reading-card">
+<h3>Webhook｜事件通知</h3>
+<p>某件事發生時，服務會主動用 HTTP 通知另一個網址。像是 GitHub 收到新的 push，就通知 Netlify 開始部署。</p>
+<a href="https://docs.github.com/en/webhooks/about-webhooks" target="_blank" rel="noopener noreferrer">GitHub：Webhook 說明</a>
+</article>
+<article class="reading-card">
+<h3>API｜程式的溝通介面</h3>
+<p>API 規定程式可以怎麼提出請求、會收到什麼回應。前端向 <code>/api/posts</code> 要文章，後端就回傳文章資料。</p>
+<a href="https://developer.mozilla.org/en-US/docs/Glossary/API" target="_blank" rel="noopener noreferrer">MDN：API 是什麼？</a>
+</article>
+<article class="reading-card">
+<h3>資料庫｜可查詢的長期資料存放處</h3>
+<p>網站關閉或重新整理後，資料仍能保存，之後也能查找與更新。部落格會把文章、會員和留言存進資料庫。</p>
+<div class="reading-detail"><b>結構化資料</b>欄位固定、格式一致，例如每則留言都有作者、內容和建立時間。<br><b>半結構化資料</b>以欄位名稱描述內容，但每筆資料可以有不同欄位，例如 JSON。</div>
+<a href="https://www.mongodb.com/resources/basics/unstructured-data/structured-vs-unstructured" target="_blank" rel="noopener noreferrer">MongoDB：結構化與非結構化資料</a>
+</article>
+<article class="reading-card">
+<h3>CI/CD｜自動檢查與交付</h3>
+<p>CI 讓程式變更能自動整合、建置和測試；CD 則把通過檢查的版本準備好交付或部署。推送程式碼後自動檢查，是常見的起點。</p>
+<a href="https://docs.github.com/en/actions/get-started/continuous-integration" target="_blank" rel="noopener noreferrer">GitHub Actions：持續整合</a>
+</article>
+<article class="reading-card">
+<h3>Git｜記錄程式變化的版本控制工具</h3>
+<p>Git 會記錄專案的修改歷史，讓你比較版本、建立分支，也能在需要時回到先前版本。GitHub 則提供遠端儲存與協作功能。</p>
+<a href="https://git-scm.com/book/zh-tw/v2/開始-Git-是什麼？" target="_blank" rel="noopener noreferrer">Pro Git：Git 是什麼？</a>
+</article>
+</div>
+
+<h2 class="reading-section-title">延伸閱讀：網站如何組織？</h2>
+<p>架構模式是整理程式責任與元件互動的常見方法；它們是思考工具，實際專案可以依需求組合。</p>
+<div class="reading-topics">
+<article class="reading-topic">
+<h3>軟體架構模式</h3>
+<ul>
+<li><b>分層架構：</b>把畫面、應用流程和資料存取分層，讓各層責任較清楚。</li>
+<li><b>MVC：</b>Model 管資料與規則、View 呈現畫面、Controller 接收操作並協調兩者。</li>
+<li><b>客戶端－伺服器：</b>客戶端提出請求，伺服器處理後回應；瀏覽器與網站後端就是常見例子。</li>
+<li><b>事件總線：</b>讓元件透過事件傳遞訊息，發送者不必直接認識所有接收者。</li>
+<li><b>清潔／六邊形架構：</b>把核心規則和資料庫、網路等外部工具隔開，方便替換與測試。</li>
+</ul>
+<p class="reading-links"><a href="https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles" target="_blank" rel="noopener noreferrer">Microsoft：架構樣式</a> · <a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-7.0" target="_blank" rel="noopener noreferrer">Microsoft：MVC</a> · <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber" target="_blank" rel="noopener noreferrer">Microsoft：發布／訂閱模式</a></p>
+<p class="reading-links"><a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="noopener noreferrer">Clean Architecture</a> · <a href="https://alistair.cockburn.us/hexagonal-architecture" target="_blank" rel="noopener noreferrer">Hexagonal Architecture</a></p>
+</article>
+<article class="reading-topic">
+<h3>髒讀與髒寫｜資料庫交易的並行問題</h3>
+<p><b>髒讀</b>是讀到另一筆尚未完成、之後可能被取消的資料；<b>髒寫</b>是覆蓋另一筆尚未完成的修改。交易隔離等機制會限制這類互相干擾。</p>
+<p class="reading-links"><a href="https://www.postgresql.org/docs/current/transaction-iso.html" target="_blank" rel="noopener noreferrer">PostgreSQL：交易隔離</a></p>
+</article>
+</div>
+
+<h2 class="reading-section-title">從課程成果接著學</h2>
 <table>
-<thead>
-<tr><th>今天做了什麼</th><th>接著研究什麼</th></tr>
-</thead>
-
+<thead><tr><th>今天做了什麼</th><th>接著研究什麼</th></tr></thead>
 <tbody>
 <tr><td>文章與留言畫面</td><td>HTML、CSS、JavaScript 與響應式版面</td></tr>
-
 <tr><td>保存會員與留言</td><td>後端 API、資料庫與資料關聯</td></tr>
-
 <tr><td>LINE 登入後留言</td><td>OAuth、登入狀態與後端權限檢查</td></tr>
-
 <tr><td>保存版本與更新網站</td><td>Git、GitHub、建置與 CI/CD</td></tr>
 </tbody>
 </table>
 
 <div class="prompt"><b>課後練習</b>選一個小需求，例如顯示留言時間。先寫完成條件，再請 AI 實作、驗證，最後部署新版。</div>
 
-<p class="check">閱讀方向：MDN Web Docs、Git 官方文件、Netlify Docs 與 LINE Developers 文件。</p>
+<p class="check">閱讀方向：先從上方連結的官方文件或原作者文章開始；遇到新名詞時，試著用自己的部落格功能舉例說明。</p>
+<p class="check">下一頁選讀：Agent Skills、Superpowers 與 Matt Pocock Skills。</p>
 <a class="section-link" href="index.html">回到首頁</a></section>
+
+<section class="slide protected">
+<h2>選讀：你的 Agent 有沒有超能力？</h2>
+<p class="check">完成課堂實作後再閱讀。本課跟做使用 Antigravity；以下 Claude Code 與 Skills 是可另外探索的工具，不是上課必裝項目。</p>
+<p class="lead">Agent Skills 像是替 AI 加上專長與工作方法。下面兩個資源代表不同路線，可以先看介紹，再挑適合自己的。</p>
+<div class="grid">
+<div class="block skill-route skill-route--superpowers">
+<h3>路線一｜Superpowers</h3>
+<p>完整的開發方法與流程：先釐清需求、整理計畫，再逐步實作、測試與檢查。</p>
+<p><a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer">查看 obra/superpowers</a></p>
+</div>
+<div class="block skill-route skill-route--matt">
+<h3>路線二｜Matt Pocock Skills</h3>
+<p>一組小型、可調整及組合的工程技能，依需要挑選加入 Agent 的工作方式。</p>
+<p><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener noreferrer">查看 mattpocock/skills</a></p>
+</div>
+</div>
+<p class="check">它們是兩種技能資源的取向，不是互斥的 Agent 陣營。初學時先理解概念即可；安裝方式會依使用的 Agent 而不同。</p>
+<h3>延伸影片</h3>
+<div class="video-frame skill-video"><iframe src="https://www.youtube-nocookie.com/embed/RkWlEkPkxXo?start=112" title="Agent Skills 延伸影片，從 1 分 52 秒開始" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<p class="video-link"><a href="https://www.youtube.com/watch?v=RkWlEkPkxXo&amp;t=112s" target="_blank" rel="noopener noreferrer">在 YouTube 從 1:52 開始觀看延伸影片</a></p>
+<div class="prompt"><strong>選讀示範：Claude Code + Superpowers</strong>
+<p>若你已另行安裝並登入 Claude Code，可在其中執行以下外掛指令：</p>
+<pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
+<p class="check">安裝完成後重新啟動 Claude Code，開啟新對話試用。這是課後練習，不影響課堂原本的 Antigravity 操作。</p>
+</div>
+</section>
 
 </main>
 

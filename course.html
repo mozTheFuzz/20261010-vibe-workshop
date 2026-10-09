@@ -195,37 +195,22 @@ flowchart TD
 <aside class="note">沿用上一頁的任務編號與配色：綠色是文章、藍色是留言、黃色是會員。任務 03 可先用開發測試會員驗證，任務 04–05 接通正式會員與權限。留言只存在本機瀏覽器不等於共用資料庫；僅隱藏刪除按鈕也不能取代後端權限檢查。</aside>
 </section>
 
-<section class="slide protected">
-<h2>你的 Agent 有沒有超能力？</h2>
-<p class="lead">Agent Skills 像是替 AI 加上專長與工作方法。下面兩個資源代表不同路線，可以先看介紹，再挑適合自己的。</p>
-<div class="grid">
-<div class="block skill-route skill-route--superpowers">
-<h3>路線一｜Superpowers</h3>
-<p>完整的開發方法與流程：先釐清需求、整理計畫，再逐步實作、測試與檢查。</p>
-<p><a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer">查看 obra/superpowers</a></p>
-</div>
-<div class="block skill-route skill-route--matt">
-<h3>路線二｜Matt Pocock Skills</h3>
-<p>一組小型、可調整及組合的工程技能，依需要挑選加入 Agent 的工作方式。</p>
-<p><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener noreferrer">查看 mattpocock/skills</a></p>
-</div>
-</div>
-<p class="check">它們是兩種技能資源的取向，不是互斥的 Agent 陣營。初學時先理解概念即可；安裝方式會依使用的 Agent 而不同。</p>
-<h3>延伸影片</h3>
-<div class="video-frame skill-video"><iframe src="https://www.youtube-nocookie.com/embed/RkWlEkPkxXo?start=112" title="Agent Skills 延伸影片，從 1 分 52 秒開始" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-<p class="video-link"><a href="https://www.youtube.com/watch?v=RkWlEkPkxXo&amp;t=112s" target="_blank" rel="noopener noreferrer">在 YouTube 從 1:52 開始觀看延伸影片</a></p>
-<div class="prompt"><strong>本範例使用 Claude + Superpowers</strong>
-<p>在 Claude Code 中開啟外掛安裝介面，執行以下指令：</p>
-<pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
-<p class="check">安裝完成後重新啟動 Claude Code，開啟新對話，再繼續「Vibe Coding 吧！」。</p>
-</div>
-</section>
+
 
 <section class="slide protected">
 <h2>Vibe Coding 吧！</h2>
-<p class="lead">把需求一次說清楚，再跟 AI 一起把任務逐項完成。以下 Prompt 可以直接貼到 Antigravity。</p>
+<p class="lead">在新的 <code>my-first-blog</code> 資料夾開始，跟 AI 一次完成一個任務。</p>
+<h3>先開啟今天的實作資料夾</h3>
+<ol>
+<li>在桌面新增一個<strong>空資料夾</strong>，命名為 <code>my-first-blog</code>。請放在 <code>blog-class</code> 旁邊，不要放進它裡面。</li>
+<li>在 Antigravity 選 <strong>Open Folder／開啟資料夾</strong>，選取 <code>my-first-blog</code>。</li>
+<li>確認檔案側欄顯示 <code>my-first-blog</code>，開啟新的 AI 對話，再貼下方 Prompt。</li>
+</ol>
+<p class="check">課前的 <code>blog-class</code> 留作練習紀錄；GitHub 上 Fork 的課程教材用來驗收帳號。今天的新資料夾稍後會連到你建立的 <code>my-first-blog</code> Repository。</p>
+<div class="prompt"><b>貼上後，接著做什麼？</b>先看 AI 提出的計畫，確認後回覆：「先做任務 1，完成後告訴我怎麼開啟並驗收。」確認文章能開啟，再請它做下一項。</div>
+<p class="check">工具延伸：<a href="reading.html#slide-2">Agent Skills 與 Claude Code（課後選讀）</a>。</p>
 <div class="prompt vibe-prompt">
-<p>複製以下 Markdown Prompt，貼到 Claude Code 開始實作：</p>
+<p>複製以下 Markdown Prompt，貼到 Antigravity 的 AI 對話：</p>
 <pre class="markdown-prompt"><code>## 給 AI 的完整需求
 
 ### 除錯與修改原則
@@ -235,6 +220,11 @@ flowchart TD
 - 每個保留的修改都要能證明必要（拿掉會重現問題），否則移除。
 - 每個任務完成時逐檔列出修改與理由，與任務無關的修改要標示。
 - 不用部署設定（netlify.toml 等）繞過本機工具的問題；非改不可先問我。
+
+### 專案起點
+
+目前開啟的是新的空資料夾 `my-first-blog`，請在這裡建立專案。先提出技術選擇與六個任務的計畫，等我確認後才開始任務 1；每項驗收後等我確認，再做下一項。
+請提供安裝依賴與 `npm run dev` 啟動步驟，並設定對應的 dev 指令。建立 `.gitignore` 排除 `node_modules/`、`.env` 和 `.env.*`，只允許沒有真實秘密值的 `.env.example` 作為範本。
 
 我要實作一個可以讓會員留言的部落格功能，共有三大功能：
 
@@ -282,7 +272,7 @@ flowchart TD
 
 ### 實作原則
 
-先檢查目前專案架構並沿用現有技術。每一項完成後，告訴我如何操作驗收；遇到不確定的設計，先提出問題，不要自行假設。請勿將密碼、金鑰等秘密寫入前端程式碼。
+先檢查目前資料夾；空資料夾先依我確認的計畫建立專案，已有內容則沿用現有技術。每一項完成後，告訴我如何操作驗收；遇到不確定的設計，先提出問題，不要自行假設。請勿將密碼、金鑰等秘密寫入前端程式碼。
 </code></pre>
 </div>
 <aside class="note">帶學員先貼上需求，請 AI 回覆任務計畫；再從任務 1 開始逐項實作與驗收。若課堂時間有限，可由講師逐項複製單一任務，示範「提出需求 → 查看修改 → 驗收 → 修正」。</aside>
@@ -299,25 +289,64 @@ flowchart TD
 </figure>
 <h3>在本地端啟動網站</h3>
 <ol>
-<li>用 Antigravity 開啟課程專案資料夾。</li>
+<li>用 Antigravity 開啟桌面上的 <code>my-first-blog</code>。先依 AI 說明完成依賴安裝；若它指定 <code>npm install</code>，等安裝完成再繼續。</li>
 <li>開啟這個資料夾的終端機（Terminal），輸入：</li>
 </ol>
 <pre class="command-line"><code>npm run dev</code></pre>
 <ol start="3"><li>等終端機顯示本地網址（通常以 <code>http://localhost:</code> 開頭），按住 Command／Ctrl 再點網址，或複製到瀏覽器開啟。</li><li>要停止網站時，回到終端機按 <code>Ctrl + C</code>。</li></ol>
-<h3>5. 推送到 GitHub</h3>
-<p>本地測試完成後，在同一個專案資料夾的終端機，依序執行：</p>
-<pre class="command-line"><code>git add .
-git commit -m "完成第一版"
-git push origin main</code></pre>
-<ul>
-<li><code>git add .</code>：準備提交目前的檔案修改。</li>
-<li><code>git commit</code>：把這次修改記成一個版本。</li>
-<li><code>git push origin main</code>：把 <code>main</code> 分支的版本推送到 GitHub。</li>
-</ul>
-<p class="check">若你的分支不是 <code>main</code>，先執行 <code>git branch --show-current</code> 查看分支名稱，再把推送指令最後的 <code>main</code> 換成該名稱。推送成功後，確認 GitHub Repository 出現最新修改。</p>
-<p class="check">如果這個 Repository 已連接 Netlify，推送後 Netlify 會依照專案設定開始部署。</p>
+<p class="check">完成條件：能開啟本機網址，看到自己的部落格，並完成目前任務的操作驗收。下一頁再把版本推送到 GitHub。</p>
 <p class="check">如果出現「missing script: dev」，代表這個專案沒有設定啟動指令；把訊息交給 AI，請它檢查專案設定並告訴你正確啟動方式。</p>
 <aside class="note">「本地端」是自己的電腦，「雲端」是連上網路後可分享的部署環境。npm run dev 需在有 dev 指令的專案資料夾執行；各專案實際顯示的本地網址與連接埠可能不同。</aside>
+</section>
+
+<section class="slide protected">
+<h2>第一次把專案推送到 GitHub</h2>
+<p class="lead">把電腦裡的 <code>my-first-blog</code>，連到你先前建立的同名 GitHub Repository。以下指令逐行執行，每行按 Enter。</p>
+<h3>1. 確認位置，開始記錄版本</h3>
+<p>在 Antigravity 開啟 <code>my-first-blog</code>，選 <strong>Terminal → New Terminal</strong>，確認終端機路徑最後是 <code>my-first-blog</code>。若同一個終端機正在跑網站，先按 <code>Ctrl + C</code> 停止。</p>
+<pre class="command-line"><code>git init -b main
+git status</code></pre>
+<p class="check">新專案應顯示 <code>On branch main</code>。若 AI 已初始化 Git，先用 <code>git branch --show-current</code> 確認分支，後面推送時使用這個名稱。</p>
+<h3>2. 設定這個專案的提交者</h3>
+<p>把引號內的示範文字換成自己的名字，以及 GitHub Settings → Emails 中已驗證的信箱或 GitHub 提供的 noreply 信箱。這是修改紀錄的署名，不是登入密碼。</p>
+<pre class="command-line"><code>git config user.name "你的名字"
+git config user.email "你的 GitHub 提交信箱"</code></pre>
+<h3>3. 檢查檔案，提交第一個版本</h3>
+<p>確認專案中的 <code>.gitignore</code> 包含以下規則；已有其他規則時保留它們：</p>
+<pre class="command-line"><code>node_modules/
+.env
+.env.*
+!.env.example</code></pre>
+<p><code>.env.example</code> 只能放欄位名稱與示範值。接著檢查這次要提交的檔案：</p>
+<pre class="command-line"><code>git add .
+git diff --cached --name-only</code></pre>
+<p class="check">清單應是網站程式檔案；若看見 <code>.env</code>、真實金鑰檔或 <code>node_modules</code>，先停下來請 AI／講師協助排除，確認後再提交。</p>
+<pre class="command-line"><code>git commit -m "完成第一版"</code></pre>
+<h3>4. 連接自己的 GitHub Repository</h3>
+<p>開啟自己的 <code>my-first-blog</code> Repository，從 <strong>Quick setup → HTTPS</strong> 複製網址。若已有檔案，從 <strong>Code → HTTPS</strong> 複製。將下面整段範例網址替換成自己的：</p>
+<pre class="command-line"><code>git remote add origin https://github.com/YOUR-USERNAME/my-first-blog.git
+git remote -v</code></pre>
+<p class="check">成功時會顯示 <code>origin</code>，以及自己的 <code>my-first-blog.git</code> 網址。若出現 <code>remote origin already exists</code>，先用 <code>git remote -v</code> 查看；網址正確就跳過新增，不正確請講師協助確認。</p>
+<h3>5. 推送並完成 GitHub 授權</h3>
+<pre class="command-line"><code>git push -u origin main</code></pre>
+<p>若分支名稱不是 <code>main</code>，換成第 1 步確認的名稱。若出現登入視窗，選瀏覽器登入，確認是自己的 GitHub 帳號並完成授權，再回到終端機。</p>
+<details class="lesson-help"><summary>沒有登入視窗，或顯示驗證失敗？</summary>
+<p>瀏覽器已登入 GitHub，不代表終端機也已授權。可以用 GitHub CLI 完成瀏覽器授權：</p>
+<ol><li>依 <a href="https://github.com/cli/cli#installation" target="_blank" rel="noopener noreferrer">GitHub CLI 官方安裝說明</a>選擇 Windows 或 macOS 安裝方式。完成後重新開啟終端機。</li><li>執行 <code>gh --version</code>，確認顯示版本，再輸入：</li></ol>
+<pre class="command-line"><code>gh auth login</code></pre>
+<p>依序選 <strong>GitHub.com → HTTPS → 同意讓 Git 使用這次授權 → Login with a web browser</strong>，依提示在瀏覽器完成驗證，再執行：</p>
+<pre class="command-line"><code>gh auth setup-git
+git push -u origin main</code></pre>
+<p class="check">不要把 GitHub 帳號密碼當成 Git HTTPS 密碼輸入。<a href="https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git" target="_blank" rel="noopener noreferrer">GitHub：終端機授權說明</a>。</p>
+</details>
+<h3>6. 回到 GitHub 確認</h3>
+<p>重新整理自己的 Repository，應看到網站檔案與剛才的「完成第一版」提交紀錄。確認成功後，才進入下一頁連接 Netlify。</p>
+<details class="lesson-help"><summary>推送被拒絕，或找不到 Repository？</summary><p>先核對 <code>git remote -v</code> 的帳號、專案名稱與自己的登入帳號。若出現 <code>rejected</code> 或 <code>fetch first</code>，遠端可能已有其他提交；保留錯誤畫面請講師協助整合，不要強制推送。</p></details>
+<div class="prompt"><b>之後更新，只要提交並推送</b><pre class="command-line"><code>git add .
+git diff --cached --name-only
+git commit -m "說明這次修改"
+git push</code></pre>每次先確認提交清單。已設定好遠端與追蹤分支後，不必重做第一次設定。</div>
+<p class="check">參考：<a href="https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github" target="_blank" rel="noopener noreferrer">GitHub：將本機專案推送到 GitHub</a>。</p>
 </section>
 
 <section class="slide protected">
@@ -380,133 +409,297 @@ git push origin main</code></pre>
 </section>
 
 <section class="slide protected">
-<h2>串接 LINE Login</h2>
-<p class="lead">先讓 LINE Login 在本地端能測試，再把正式網址和環境變數設定到 Netlify。</p>
-<div class="prompt"><strong>先認識兩個網址</strong><br>本地網址（localhost）只能在自己的電腦開啟；LINE 無法直接連回 localhost。ngrok 會提供一個 HTTPS 公開網址，暫時轉接到你的本地網站。上線後則改用 Netlify 的正式網址。</div>
+<h2>整合Line資源</h2>
+<p class="lead">照這四步，從建立 LINE 資源一路做到正式網站驗收。</p>
+<ol class="task-roadmap">
+<li class="task-card task-card--member"><span class="task-number">1</span><div class="task-content"><span class="task-category">LINE Developers</span><h3>建立 LINE 資源</h3><p>建立 Provider 和測試用 LINE Login Channel；下一頁跟著截圖操作。</p></div></li>
+<li class="task-card"><span class="task-number">2</span><div class="task-content"><span class="task-category">Vibe Code again</span><h3>請 AI 串接 LINE Login</h3><p>讓 AI 檢查現有專案、規劃登入與 Callback 流程，並說明需要哪些環境變數。</p></div></li>
+<li class="task-card task-card--comment"><span class="task-number">3</span><div class="task-content"><span class="task-category">本地測試</span><h3>用 ngrok 測試 LINE Login</h3><p>先確認 ngrok 網址能開啟本機網站；下一頁再設定 Callback URL 並登入驗證。</p></div></li>
+<li class="task-card task-card--member"><span class="task-number">4</span><div class="task-content"><span class="task-category">部署與驗收</span><h3>邁向正式環境</h3><p>推送到 GitHub，由 Netlify 部署；設定正式環境後，再測一次登入與留言。</p></div></li>
+</ol>
+<p class="check">順序提示：先建立資源再改程式；本機測試通過後，才部署到正式網址。</p>
+</section>
 
-<h3>需要的工具與教學</h3>
+<section class="slide protected">
+<h2>建立Line 資源</h2>
+<p class="lead">先在 LINE Developers 建立 Provider 和 LINE Login Channel，為課堂測試準備專用設定。</p>
+<ol>
+<li>進入 <a href="https://developers.line.biz/console/" target="_blank" rel="noopener noreferrer">LINE Developers Console</a>，用自己的 LINE 帳號登入。</li>
+<li>找到 <strong>Providers</strong>，按 <strong>Create</strong> 建立一個 Provider。Provider 是用來整理 LINE Login 等 Channel 的空間。</li>
+</ol>
+<figure class="line-screenshot">
+<a href="assets/images/line-developer-providers.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/line-developer-providers.png" alt="LINE Developers 的 Providers 頁面，右上方有綠色 Create 按鈕"></a>
+<figcaption>在 Providers 頁面按 Create，建立新的 Provider。</figcaption>
+</figure>
+<ol start="3">
+<li>進入剛建立的 Provider，選擇新增 Channel，並選 <strong>LINE Login</strong>。</li>
+<li>將 Channel 命名為 <code>my-first-blog-test</code>。服務地區選 <strong>Taiwan</strong>，再填寫必要的服務提供者國家／地區等欄位並建立。</li>
+</ol>
+<figure class="line-screenshot">
+<a href="assets/images/line-login-create-channel.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/line-login-create-channel.png" alt="LINE Developers 建立 Channel 表單，Channel type 為 LINE Login，Provider 為 My First Blog，服務地區選 Taiwan"></a>
+<figcaption>新增 Channel 時確認類型是 LINE Login，服務地區選 Taiwan；名稱填入 <code>my-first-blog-test</code>。</figcaption>
+</figure>
+<p class="check">完成條件：Provider 中看得到名為 <code>my-first-blog-test</code> 的 LINE Login Channel。</p>
+<aside class="note">LINE Developers 官方入口：<a href="https://developers.line.biz/en/" target="_blank" rel="noopener noreferrer">LINE Developers</a>。Channel 建立後的 Web app、Callback URL 和本機 ngrok 設定，接續再設定。</aside>
+</section>
+
+<section class="slide protected">
+<h2>Vibe Code again</h2>
+<p class="lead">LINE Login Channel 建立後，再請 AI 把 LINE 登入接進現有的會員留言網站。</p>
+<div class="prompt vibe-prompt">
+<p>複製以下 Markdown Prompt，貼給 AI：</p>
+<pre class="markdown-prompt"><code>## 交給 AI 的需求
+
+請先檢查目前專案的架構與登入流程，再把會員登入串接 LINE Login。
+列出需要的 Channel 設定、環境變數名稱與修改檔案；不要猜測路徑或框架。
+
+### 環境變數
+
+LINE 環境變數有兩個，確保兩個環境變數的命名為：
+
+- `LINE_CHANNEL_ID`
+- `LINE_CHANNEL_SECRET`
+
+### Callback 規格
+
+- Callback 路徑固定為 `/api/auth/line/callback`。
+- Callback 完整網址必須由每次請求的來源自動組成（`&lt;scheme&gt;://&lt;host&gt;/api/auth/line/callback`），不可寫死 hostname，也不可用環境變數指定 hostname。
+- 經過 ngrok 或其他反向代理時，要讀取 `X-Forwarded-Proto` 與 `X-Forwarded-Host`，還原瀏覽器實際看到的網址。
+- 以 localhost、ngrok、正式站三種來源各驗證一次送給 LINE 的 `redirect_uri`，把三個結果列給我。ngrok 可用 `curl` 加代理標頭模擬；並確認登入導向網址中的 `redirect_uri` 正確。
+- 說明哪些網址需要登錄在 LINE Developers Console 的 Callback URL，以及為什麼程式無法省略這一步。
+
+### 安全要求
+
+- Channel secret 不可出現在前端、程式碼、聊天訊息或任何會提交到 Git 的檔案。
+- 告訴我如何在本機用 `.env` 安全設定，並確認 `.env` 已被 `.gitignore` 排除。
+
+### 會員與權限
+
+- 首次登入建立會員，再次登入找到同一位會員，以 LINE 使用者 id 為依據。
+- 登入後才能留言，且只能刪除自己的留言；這兩項都要在後端檢查，不能只靠隱藏畫面按鈕。
+
+### 除錯與修改原則
+
+- 遇到非預期行為，先找出根本原因並附證據，確認後再修改，不做嘗試性修改。
+- 一次只做一個修改並驗證；沒效就先還原，再試下一個，不可疊加。
+- 每個保留的修改都要能證明必要，否則移除。
+- 完成時逐檔列出修改與理由，與任務無關的修改要特別標示。
+- 不用部署設定（`netlify.toml` 等）繞過本機工具的問題；非改不可先問我。</code></pre>
+</div>
+<div class="grid">
+<div class="block"><h3>先準備 Channel 資訊</h3><p>從 LINE Developers 的 Channel 設定取得 Channel ID 與 Channel secret。secret 是密碼，只放在伺服器環境變數。</p></div>
+<div class="block"><h3>照專案現況實作</h3><p>請 AI 先說明預計修改哪些檔案及原因，再逐步修改。遇到錯誤時，提供重現步驟與錯誤畫面，不要一次堆疊多個修正。</p></div>
+</div>
+<p class="check">完成條件：網站出現 LINE 登入入口，AI 已說明本機啟動方式、Callback 路徑和所需環境變數。</p>
+</section>
+
+<section class="slide protected">
+<h2>本地測試 ①｜啟動網站與 ngrok</h2>
+<p class="lead">這一頁只確認一件事：透過 ngrok 的 HTTPS 網址，能開啟你電腦上的部落格。</p>
+<h3>1. 先設定本機的測試環境變數</h3>
+<p>在 Antigravity 開啟 <code>my-first-blog</code>。依 AI 說明，在專案的 <code>.env</code> 填入 <code>my-first-blog-test</code> Channel 的值：</p>
+<pre class="command-line"><code>LINE_CHANNEL_ID=填入測試Channel的ID
+LINE_CHANNEL_SECRET=填入同一個測試Channel的Secret</code></pre>
+<p class="check">確認 <code>.env</code> 已被 <code>.gitignore</code> 排除；值只在自己的編輯器填入。若專案另需 <code>SESSION_SECRET</code>，依 AI 說明在本機產生並設定。</p>
+<h3>2. 終端機 A：啟動網站</h3>
+<p>在 <code>my-first-blog</code> 的終端機執行：</p>
+<pre class="command-line"><code>npm run dev</code></pre>
+<p>等畫面顯示本機網址，先開啟確認網站能顯示。記下連接埠（網址冒號後的數字），並保持<strong>終端機 A 開啟</strong>。</p>
+<figure class="line-screenshot">
+<a href="assets/images/local-test-netlify-dev.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/local-test-netlify-dev.png" alt="終端機執行 npm run dev，Netlify Dev 顯示 Local dev server ready 與本機網址"></a>
+<figcaption>圖 1：確認本機開發伺服器已啟動。以自己畫面中的預覽網址和連接埠為準，圖中的 <code>localhost:8888</code> 只是範例。</figcaption>
+</figure>
+<h3>3. 終端機 B：安裝並啟動 ngrok</h3>
+<p>另開一個終端機，稱為<strong>終端機 B</strong>。依 <a href="https://ngrok.com/docs/start" target="_blank" rel="noopener noreferrer">ngrok 官方教學</a>選擇自己的作業系統安裝。首次使用時，從 ngrok 管理頁取得 Authtoken，替換下方佔位文字後執行：</p>
+<pre class="command-line"><code>ngrok config add-authtoken &lt;你的 ngrok Authtoken&gt;
+ngrok http &lt;終端機 A 顯示的連接埠&gt;</code></pre>
+<p class="check">例如本機網址為 <code>http://localhost:8888</code>，第二行就是 <code>ngrok http 8888</code>。Authtoken 只在自己的終端機輸入，不貼到 AI 對話。</p>
+<figure class="line-screenshot">
+<a href="assets/images/local-test-ngrok-forwarding.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/local-test-ngrok-forwarding.png" alt="ngrok 終端機顯示一個 HTTPS Forwarding 網址，轉接到 localhost:8888"></a>
+<figcaption>圖 2：ngrok 將 HTTPS 網址轉接到本機網站。使用你自己的 Forwarding 網址和連接埠；不要照抄範例。</figcaption>
+</figure>
+<h3>4. 用 HTTPS 網址開啟網站</h3>
+<p>複製終端機 B 的 <strong>Forwarding HTTPS 網址</strong>，貼到瀏覽器；若出現 ngrok 的訪問提示，確認是自己的網址後繼續。應看到和本機相同的部落格。</p>
+<div class="prompt"><b>完成條件</b>終端機 A 跑網站、終端機 B 跑 ngrok，兩個都保持開啟；瀏覽器從 ngrok HTTPS 網址能看到部落格。下一頁再設定 LINE 登入。</div>
+<p class="check">如果 HTTPS 網址打不開，先確認本機網站仍在執行，以及 ngrok 使用的連接埠與終端機 A 相同。</p>
+</section>
+
+<section class="slide protected">
+<h2>本地測試 ②｜設定 Callback 並登入 LINE</h2>
+<p class="lead">沿用上一頁的 ngrok HTTPS 網址，讓 LINE 登入後能回到你的本機網站。兩個終端機都要保持開啟。</p>
+<h3>1. 選對測試用 Channel</h3>
+<p>進入 LINE Developers Console，開啟 <code>my-first-blog-test</code>，確認這個 Channel 的 ID 與本機 <code>LINE_CHANNEL_ID</code> 相同，再進入 <strong>LINE Login</strong> 分頁並啟用 Web app。</p>
+<h3>2. 填入完整 Callback URL</h3>
+<p>Callback URL 是 LINE 完成登入後返回網站的地址。按 <strong>Edit</strong>，將「這次 ngrok HTTPS 網址」加上固定的 <code>/api/auth/line/callback</code>，儲存設定：</p>
+<pre class="command-line"><code>https://你的ngrok網域/api/auth/line/callback</code></pre>
+<figure class="line-screenshot">
+<a href="assets/images/local-test-line-callback.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/local-test-line-callback.png" alt="LINE Developers 的 LINE Login 設定頁，Callback URL 欄位填入 ngrok HTTPS 網址"></a>
+<figcaption>圖 1：LINE Login 的 Callback URL 使用當次 ngrok 網址，並以固定路徑 <code>/api/auth/line/callback</code> 結尾。ngrok 網域更換時，記得同步更新這個網址。</figcaption>
+</figure>
+<p class="check">使用自己的完整網址。只替換網域，保留 <code>/api/auth/line/callback</code>；ngrok 網址改變時，也要更新此處。<a href="https://developers.line.biz/en/docs/line-login/integrate-line-login/#setting-a-callback-url" target="_blank" rel="noopener noreferrer">LINE：設定 Callback URL</a>。</p>
+<h3>3. 從 ngrok 網址按 LINE 登入</h3>
+<p>回到瀏覽器，開啟 ngrok 的網站首頁，按 LINE 登入並同意授權。確認完成後返回同一個 ngrok 網域上的部落格，而不是停在 LINE 或錯誤頁面。</p>
+<h3>4. 驗證會員與留言</h3>
+<ul><li>首次登入建立會員，登出再登入後仍是同一位會員。</li><li>登入後能留言，也能刪除自己的留言；登出後不能新增留言。</li><li>使用另一個有測試權限的帳號，確認不能刪除別人的留言。</li><li>另外測試取消授權，網站應顯示可理解的提示並讓你重試。</li></ul>
+<div class="prompt"><b>完成條件</b>LINE 登入後能返回部落格，會員身分與留言操作正確，再進入正式環境設定。</div>
+<p class="check">若失敗，先核對測試 Channel、Callback 完整網址、兩個終端機是否仍在執行。修改 <code>.env</code> 後，在終端機 A 按 <code>Ctrl + C</code>，再執行 <code>npm run dev</code>。仍失敗時提供錯誤畫面與操作步驟給講師，遮住秘密值。</p>
+</section>
+
+<section class="slide protected">
+<h2>邁向正式環境</h2>
+<p class="lead">本機 LINE Login 測試通過後，再把設定移到 Netlify 正式網站。先對照下面的表格，確認每個值屬於哪一個環境。</p>
+<div class="task-table-wrap" role="region" aria-label="本機測試與正式環境設定對照" tabindex="0">
+<table class="environment-table">
+<thead><tr><th scope="col">設定項目</th><th scope="col">本機測試</th><th scope="col">正式環境</th></tr></thead>
+<tbody>
+<tr><th scope="row">LINE Login Channel</th><td><code>my-first-blog-test</code></td><td><code>my-first-blog-production</code></td></tr>
+<tr><th scope="row">開啟網站的網址</th><td>本機網站透過當次 ngrok HTTPS 網址存取</td><td>Netlify 正式網址或已設定的正式網域</td></tr>
+<tr><th scope="row">Callback URL</th><td><code>https://你的ngrok網域/api/auth/line/callback</code></td><td><code>https://你的正式網域/api/auth/line/callback</code></td></tr>
+<tr><th scope="row"><code>LINE_CHANNEL_ID</code></th><td>測試 Channel 的 ID</td><td>正式 Channel 的 ID</td></tr>
+<tr><th scope="row"><code>LINE_CHANNEL_SECRET</code></th><td>同一個測試 Channel 的 secret</td><td>同一個正式 Channel 的 secret</td></tr>
+<tr><th scope="row">環境變數放在哪裡？</th><td>本機 <code>my-first-blog/.env</code>，不提交 Git</td><td>Netlify → Environment variables → Production</td></tr>
+<tr><th scope="row">修改設定後</th><td>重新啟動 <code>npm run dev</code></td><td>重新部署 Netlify</td></tr>
+</tbody>
+</table>
+</div>
+<p class="check">兩邊使用相同的變數名稱與 Callback 路徑；Channel 的值和網址分開設定。若專案有 <code>SESSION_SECRET</code>，正式環境也要另外設定。</p>
+<h3>1. 建立正式環境專用的 LINE Login</h3>
+<ol>
+<li>在 <a href="https://developers.line.biz/console/" target="_blank" rel="noopener noreferrer">LINE Developers Console</a> 的 Provider 中新增一個 LINE Login Channel，和本機測試用 Channel 分開管理。名稱可用 <code>my-first-blog-production</code> 作為範例。</li>
+<li>啟用 Web app，並登記正式網站 Callback URL：<code>https://你的正式網域/api/auth/line/callback</code>。</li>
+<li>記下這個正式 Channel 的 Channel ID 與 Channel secret；不要沿用測試 Channel 的值。</li>
+</ol>
+
+<h3>2. 在 Netlify 新增兩個 Environment Variables</h3>
+<ol>
+<li>開啟 Netlify 專案，在側邊選單進入 <strong>Environment variables</strong>。</li>
+</ol>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-production-environment-entry.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-production-environment-entry.png" alt="Netlify 專案側邊欄中選取 Environment variables 的畫面"></a>
+<figcaption>圖 1：在 Netlify 專案管理畫面開啟 Environment variables。</figcaption>
+</figure>
+<ol start="2">
+<li>新增 <code>LINE_CHANNEL_ID</code>，將 Production 的值設為正式 LINE Login Channel 的 Channel ID。</li>
+<li>新增 <code>LINE_CHANNEL_SECRET</code>，將 Production 的值設為同一個正式 Channel 的 Channel secret；勾選 <strong>Contains secret values</strong>。</li>
+<li>若畫面提供 Scope 選項，確保變數包含 <strong>Functions</strong>，讓後端函式能讀取；依程式建置需要再包含 Builds。若沒有 Scope 選項，保留預設值。</li>
+</ol>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-production-secret-setting.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-production-secret-setting.png" alt="Netlify 新增 LINE_CHANNEL_SECRET 環境變數，勾選 Contains secret values 的設定畫面"></a>
+<figcaption>圖 2：新增 Channel secret 時，勾選 Contains secret values。不要把值貼到程式碼或 GitHub。</figcaption>
+</figure>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-production-env-list.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-production-env-list.png" alt="Netlify 環境變數清單，列出 LINE_CHANNEL_ID、LINE_CHANNEL_SECRET 與 SESSION_SECRET，值以鎖頭標示"></a>
+<figcaption>圖 3：儲存後確認清單中有 <code>LINE_CHANNEL_ID</code> 和 <code>LINE_CHANNEL_SECRET</code>；清單只顯示名稱，不會顯示秘密值。</figcaption>
+</figure>
+<p class="check">Netlify 環境變數更新後需要重新部署才會套用。<a href="https://docs.netlify.com/build/environment-variables/overview/" target="_blank" rel="noopener noreferrer">Netlify Environment variables 官方說明</a></p>
+
+<h3>3. 把程式碼推送到 GitHub</h3>
+<p>提交並推送已完成 LINE Login 整合的程式碼到 Netlify 連接的 Repository 與分支。推送後等待 Netlify 部署完成，再開啟正式網站網址。</p>
+<p>先在專案根目錄打開 <code>.gitignore</code>，確認有以下一行；沒有就加上，其他規則保留：</p>
+<pre class="command-line"><code>.env</code></pre>
+<p>在終端機確認 Git 會忽略這個檔案：</p>
+<pre class="command-line"><code>git check-ignore -v .env</code></pre>
+<p class="check">完成條件：指令顯示 <code>.gitignore</code> 中的規則符合 <code>.env</code>。</p>
+<pre class="markdown-prompt"><code>git add .
+git commit -m "Connect production LINE Login"
+git push origin &lt;部署分支名稱&gt;</code></pre>
+
+<h3>4. 在線上網址測試</h3>
+<ul><li>LINE 登入、取消授權及登出都能正常返回正式網站。</li><li>首次登入會建立會員，再次登入能找到同一個會員。</li><li>登入後可以留言；登出後不能留言，也不能刪除別人的留言。</li></ul>
+<p class="check">第 4 項測試通過後，再進行正式發佈。Channel secret 僅保存在 Netlify 環境變數，不提交到 GitHub。</p>
+
+<h3>5. 部署正式環境</h3>
+<h4>LINE Login｜發佈正式 Channel</h4>
+<p>再次確認這是正式環境專用的 LINE Login Channel，正式 Callback URL 和 Netlify 環境變數都已設定，測試也已通過，再將 Channel 狀態從 <strong>Developing</strong> 改為 <strong>Published</strong>。</p>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/line-production-publish-channel.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/line-production-publish-channel.png" alt="LINE Developers 發佈 Channel 的確認視窗，說明發佈後所有 LINE 使用者都能使用，而且無法復原"></a>
+<figcaption>圖 4：發佈 Channel 前的確認畫面。發佈後任何 LINE 使用者都可以使用；無法切回 Developing，除非刪除並重建 Channel。未確認正式設定前不要按 Publish。</figcaption>
+</figure>
+
+<h4>Netlify｜公開正式網站</h4>
+<p>確認部署的是正式版本、網站網址正確，再按 <strong>Make public</strong>，讓使用者可以透過正式網址開啟網站。</p>
+<figure class="repo-screenshot netlify-screenshot">
+<a href="assets/images/netlify-production-make-public.png" target="_blank" rel="noopener noreferrer"><img src="assets/images/netlify-production-make-public.png" alt="Netlify Make public 對話框，顯示正式網站網址和 Public anyone on the internet 選項"></a>
+<figcaption>圖 5：Netlify 公開網站前確認網址與存取範圍。公開後，任何人都能在網路上開啟網站；請先確認內容可以公開。</figcaption>
+</figure>
+<p class="check">完成條件：正式 LINE Login Channel 已 Published，Netlify 網站已公開，正式網址的登入與留言測試都通過。</p>
+</section>
+
+<section class="slide protected">
+<h2>最終 CI/CD 架構 Overview</h2>
+<p class="lead">從規劃、在本機開發與測試，到推送程式碼並由 Netlify 部署。</p>
+<figure class="responsibility-diagram">
+<div class="mermaid-output" role="img" aria-label="流程分成 Developer 開發區、Netlify 部署平台與 User 使用區。Developer 規劃、寫程式、執行 npm run dev，透過 ngrok 與 LINE Login 測試；通過後推送遠端，由 Netlify 部署，User 再使用正式網站。若測試失敗，回到寫程式修正。"></div>
+<script type="text/plain" class="mermaid-source">
+flowchart TD
+    subgraph developer["Developer｜開發與本機測試"]
+      direction TD
+      plan["規劃"] --> code["寫 Code"]
+      code --> dev["npm run dev"]
+      dev <--> ngrok["ngrok local"]
+      ngrok <--> test["LINE Login test"]
+      test -->|需要修改| code
+    end
+    test -->|測試通過| push["git push to remote"]
+    push --> deploy["Netlify deployment"]
+    subgraph user["User｜正式環境使用者"]
+      direction TB
+      official["透過正式網站使用 LINE Login"]
+    end
+    deploy --> official
+    classDef planning fill:#fff7df,stroke:#856015,color:#202522
+    classDef local fill:#edf6fc,stroke:#226b9b,color:#202522
+    classDef release fill:#edf7ef,stroke:#176b46,color:#202522
+    style developer fill:#f7faff,stroke:#226b9b,stroke-width:2px
+    style user fill:#f8fbf8,stroke:#176b46,stroke-width:2px
+    class plan planning
+    class code,dev,ngrok,test local
+    class push,deploy release
+    class official planning
+</script>
+<figcaption>藍框是 Developer 的開發與本機測試範圍；綠框是 User 使用正式網站的範圍。Netlify 連接兩者，將推送的版本部署上線。</figcaption>
+<p class="diagram-fallback">【Developer｜開發與本機測試】規劃 → 寫 Code → npm run dev ↔ ngrok local ↔ LINE Login test。若測試需要修改，回到寫 Code；測試通過後 git push to remote → Netlify deployment →【User｜正式環境使用者】透過正式網站使用 LINE Login。</p>
+</figure>
+<aside class="note">此圖呈現課程的開發與部署路徑。ngrok 用於本機測試，正式環境使用正式網域與正式 LINE Login Channel；不要把測試 Channel 的 Callback URL 或秘密值帶到正式環境。</aside>
+</section>
+
+<section class="slide protected">
+<h2>結語：先想清楚，再動手</h2>
+<div class="conclusion-intro">
+<div><h3 class="conclusion-toy">This is a toy</h3><p>這是一個教學原型，不是可以直接承受真實營運的產品。</p></div>
+<p><strong>先想應用場景：</strong>誰會使用？要解決什麼問題？最重要的流程是什麼？想清楚目的，再決定要做什麼。</p>
+</div>
+
+<h3 class="conclusion-heading">真正上線前，仍要回答這些工程問題</h3>
+<div class="conclusion-grid">
+<section class="conclusion-card">
+<h4>架構與資料</h4>
+<p>架構影響後續修改的難易。可以繼續學習：</p>
+<p><strong>SOLID 原則</strong><br><strong>Clean Architecture</strong><br><strong>Domain-Driven Design（DDD）</strong></p>
+<p>使用人數、資料量或查詢複雜度增加時，重新評估資料模型、效能、備份與維護需求，再考慮 <a href="https://www.postgresql.org/docs/current/" target="_blank" rel="noopener noreferrer">PostgreSQL</a> 或 <a href="https://www.mongodb.com/docs/manual/" target="_blank" rel="noopener noreferrer">MongoDB</a> 等資料庫。</p>
+</section>
+<section class="conclusion-card">
+<h4>Availability｜可用性</h4>
+<p>先決定服務中斷能接受多久、需要多少備援，再比較方案。Serverless 能減少伺服器管理工作，但仍需評估服務限制、成本與監控。</p>
 <ul>
-<li><a href="https://login.ngrok.com/signup?grant_id=iamsog_3KRiWMG7hsKjf3g7XAyjWtCdvIK" target="_blank" rel="noopener noreferrer">建立 ngrok 帳號</a>｜<a href="https://ngrok.com/use-cases/share-localhost" target="_blank" rel="noopener noreferrer">ngrok 官方：將 localhost 分享到網路</a></li>
-<li><a href="https://developers.line.biz/en/" target="_blank" rel="noopener noreferrer">LINE Developers Console</a>｜<a href="https://developers.line.biz/en/docs/line-login/getting-started/" target="_blank" rel="noopener noreferrer">LINE Login 入門教學</a></li>
-<li><a href="https://developers.line.biz/en/docs/line-login/web/integrate-line-login/" target="_blank" rel="noopener noreferrer">LINE Developers：在網站整合 LINE Login</a></li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" target="_blank" rel="noopener noreferrer">Amazon Web Services Lambda</a></li>
+<li><a href="https://docs.cloud.google.com/run/docs/functions/overview" target="_blank" rel="noopener noreferrer">Google Cloud Run functions</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" target="_blank" rel="noopener noreferrer">Azure Functions</a></li>
 </ul>
-
-<div class="line-setup-stage line-setup-stage--local">
-<h3>第一階段｜建立本地可測試環境</h3>
-<ol>
-<li>在 LINE Developers 建立 Provider，再建立 <strong>LINE Login Channel</strong>；App type 選 <strong>Web app</strong>。</li>
-<li>在電腦開啟專案，用第一個終端機啟動網站：<br><code>npm run dev</code><br>記下終端機顯示的本地連接埠（例如 3000）。</li>
-<li>依 ngrok 官方教學安裝並登入 ngrok。Authtoken 是個人憑證，只在自己的終端機設定，不要貼到聊天、前端程式或 GitHub：<br><code>ngrok config add-authtoken &lt;你的 ngrok Authtoken&gt;</code></li>
-<li>保持網站執行，另開第二個終端機，把 ngrok 連到剛才的本地連接埠：<br><code>ngrok http &lt;本地連接埠&gt;</code></li>
-<li>複製 ngrok 顯示的 HTTPS 網址。從 LINE Login Channel 設定 Callback URL，填入「ngrok HTTPS 網址 + 專案實際的回呼路徑」。先請 AI 確認專案使用的回呼路徑，再照填；不要猜路徑。</li>
-<li>將 Channel ID 和 Channel secret 放在本機伺服器環境變數（例如未提交到 Git 的 <code>.env.local</code>），由後端讀取。不要放在瀏覽器前端程式碼。</li>
-<li>用 LINE 帳號測試登入、取消授權和登出，確認流程會回到 ngrok 網址下的本地網站。</li>
-</ol>
-<p class="check">免費 ngrok 網址可能在重新啟動後改變；網址變更時，記得同步更新 LINE Login Channel 的本地 Callback URL。</p>
-</div>
-
-<div class="line-setup-stage line-setup-stage--remote">
-<h3>第二階段｜設定遠端 Netlify 環境</h3>
-<ol>
-<li>把已測試的程式推送到 GitHub，確認 Netlify 連接正確的 Repository 和部署分支。</li>
-<li>在 Netlify 專案的 <strong>Environment variables</strong> 設定相同的 Channel ID 與 Channel secret。秘密值留在伺服器環境變數，不要提交到 Repository。</li>
-<li>到 LINE Login Channel 的 Callback URL 加入 Netlify 正式網址與同一條回呼路徑，例如 <code>https://你的網站.netlify.app/專案回呼路徑</code>。本地測試網址和正式網址可以分別登記。</li>
-<li>儲存環境變數後，重新部署 Netlify 專案，再用正式網站網址測試登入、取消授權與登出。</li>
-</ol>
-<p class="check">完成條件：本地 ngrok 測試與 Netlify 正式網址都能完成 LINE Login；正式環境不使用開發測試會員入口。</p>
-</div>
-
-<aside class="note">LINE Login Web app 要選 Web app 類型，並在 Channel 設定中登記 Callback URL；登入流程會把授權結果送回該網址。請確認 Channel ID／secret 只由後端使用。LINE 官方文件說明可在同一 Channel 登記多個 Callback URL。</aside>
 </section>
-
-<section class="slide protected">
-<h2>遇到問題，怎麼讓 AI 協助修正？</h2>
-
-<div class="grid">
-<div class="block">
-<h3>描述操作與預期</h3>
-
-<p>「我用會員 B 刪除 A 的留言，預期應該拒絕。」</p>
-</div>
-
-<div class="block">
-<h3>描述實際結果</h3>
-
-<p>「實際上留言被刪掉了。請檢查後端權限。」</p>
-</div>
-</div>
-
-<div class="prompt"><b>交給 AI 的需求</b>請根據這個重現步驟定位原因，提出修正並說明如何驗證。修正後重新檢查未登入、作者本人及其他會員的操作結果。</div>
-
-<p class="lead">修正後，再做同一個測試確認結果。</p>
-
-<aside class="note">示範一個錯誤回報。錯誤訊息可以給 AI，秘密金鑰與會員個資需移除。不要只要求「幫我修好」。</aside>
+<section class="conclusion-card">
+<h4>CI/CD｜自動檢查與部署</h4>
+<p>把建置、測試和部署流程自動化，讓每次修改都能重複檢查。</p>
+<ul>
+<li><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a></li>
+<li><a href="https://docs.gitlab.com/ci/pipelines/" target="_blank" rel="noopener noreferrer">GitLab CI/CD</a></li>
+<li><a href="https://learn.microsoft.com/azure/devops/pipelines/" target="_blank" rel="noopener noreferrer">Azure Pipelines</a></li>
+<li><a href="https://www.jenkins.io/doc/book/pipeline/" target="_blank" rel="noopener noreferrer">Jenkins Pipeline</a></li>
+</ul>
 </section>
-
-<section class="slide protected">
-<h2>把測試身分換成 LINE 身分</h2>
-
-<div class="flow">
-<div><strong>網站入口</strong><small>按下 LINE 登入</small></div>
-
-<div><strong>LINE 授權</strong><small>使用者登入並同意</small></div>
-
-<div><strong>後端驗證</strong><small>處理授權回傳</small></div>
-
-<div><strong>會員登入</strong><small>找到會員或首次建立</small></div>
 </div>
 
-<p class="lead">LINE 確認外部身分，網站保存自己的會員資料與權限。</p>
-
-<p class="check">首次登入完成會員註冊；再次登入找到同一位會員。</p>
-
-<aside class="note">這是概念流程，不是完整協定細節。LINE Login 不等於 LINE 聊天機器人。額外手機或班級資格驗證可以留作課後延伸。</aside>
-</section>
-
-<section class="slide protected">
-<h2>完成設定，跑一次真正的登入與留言</h2>
-
-<div class="prompt"><b>交給 AI 的需求</b>請將會員登入串接 LINE Login，列出 channel、回呼網址與後端環境變數設定。後端完成身分驗證並維持登入狀態，首次登入建立會員。請處理取消授權，並關閉正式環境的測試登入。</div>
-
-<div class="grid">
-<div class="block">
-<h3>整合驗收</h3>
-
-<p>首次登入不漏建會員。<br>再次登入不重複建立。<br>登入後能留言，登出後不能。</p>
-</div>
-
-<div class="block">
-<h3>持續交付</h3>
-
-<p>提交並推送新版本。<br>確認 Netlify 部署結果。<br>在線上網址再跑一次流程。</p>
-</div>
-</div>
-
-<aside class="note">課前準備 LINE channel，並確認正式網址的回呼設定。先講測試，再串接，最後仍需整合測試。Git 更新觸發設定好的建置、檢查與部署；自動化測試需要額外配置。</aside>
-</section>
-
-<section class="slide protected">
-<h2>第一版完成，就先部署一次</h2>
-
-<div class="grid">
-<div class="block">
-<h3>Git + GitHub</h3>
-
-<p>保存一次修改版本。<br>把程式碼推送到遠端專案。</p>
-</div>
-
-<div class="block">
-<h3>Netlify</h3>
-
-<p>連接 GitHub 專案。<br>依架構設定建置與環境變數。</p>
-</div>
-</div>
-
-<p class="lead">取得網站網址，從手機或另一個瀏覽器開啟。</p>
-
-<div class="prompt"><b>交給 AI 的需求</b>請依現有專案整理 Netlify 部署步驟，列出前端、後端與資料庫需要的設定。秘密值放在後端環境變數，並告訴我如何確認部署成功。</div>
-
-<aside class="note">部署貫穿實作，不再另外增加一大段理論。純靜態 HTML 不足以獨自完成安全登入與多人共用留言，需要相容的後端函式或外部後端服務與資料庫。</aside>
+<div class="conclusion-close"><strong>把大問題切小。</strong>如果還是解決不了，就再切小一點；先完成一件能驗證的事，再往下一步。</div>
 </section>
 
 </main>
