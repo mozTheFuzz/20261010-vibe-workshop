@@ -6,8 +6,8 @@
 
 - `index.html`：首頁與三個區段的入口。
 - `preparation.html`：課前準備（7 個步驟，含 GitHub Fork 圖解、Windows／Mac 安裝說明與驗收清單）。
-- `course.html`：課程內容（16 張投影片）。
-- `reading.html`：課後閱讀（1 張投影片）。
+- `course.html`：課程內容（19 張投影片，含首次 Git 推送、兩階段本機測試、最終 CI/CD 架構圖與結語）。
+- `reading.html`：課後閱讀（2 張投影片，含 Agent Skills 選讀）。
 - `assets/styles.css`：四個頁面的共用樣式。
 - `assets/slides.js`：投影片切換、筆記、列印、全螢幕與密碼提示。
 
