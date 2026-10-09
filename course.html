@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>課程內容 · 用 Vibe Coding 做出會員留言部落格</title>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/slides.js" defer></script>
+</head>
+<body >
+<header><span>VIBE CODING 實作課 · 60 分鐘</span>
+<div><button id="notes" aria-pressed="false">講者筆記</button> <button id="fullscreen">全螢幕</button></div>
+</header>
+
+<nav class="site-nav" aria-label="課程導覽"><a href="index.html">首頁</a><a href="preparation.html">課前準備</a><a href="course.html" aria-current="page">課程內容</a><a href="reading.html">課後閱讀</a></nav>
+
+<main>
+
+<section class="slide protected" id="course">
+<div class="label">01 · 使用者視角 vs 工程師視角</div>
+
+<h2>同一個部落格，兩種工作流程</h2>
+
+<div class="grid">
+<div class="block">
+<h3>使用者視角</h3>
+
+<ol><li>進入部落格</li><li>用 LINE 登入</li><li>發表留言</li></ol>
+</div>
+
+<div class="block">
+<h3>工程師視角</h3>
+
+<ol><li>定義部落格功能</li><li>定義會員與註冊功能</li><li>實作與測試留言</li><li>串接 LINE Login</li></ol>
+</div>
+</div>
+
+<p class="lead">我們用 AI，把使用者的需求一步步變成可以操作的網站。</p>
+
+<aside class="note">先展示成品，再切換到工程師視角。開發順序不同於使用者操作順序。這堂課以具備會員與留言功能的部落格為案例。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">02 · 所需工具</div>
+
+<h2>開始前，準備好三項工具</h2>
+
+<div class="grid three">
+<div class="block">
+<h3>GitHub 帳號</h3>
+
+<p>存放程式碼與版本。</p>
+
+<p class="check">Git 負責版本管理。GitHub 是存放 Git 專案的平台。</p>
+</div>
+
+<div class="block">
+<h3>Netlify 帳號</h3>
+
+<p>部署網站，取得可分享的網址。</p>
+
+<p class="check">連接 GitHub，程式更新後觸發部署。</p>
+</div>
+
+<div class="block">
+<h3>Antigravity</h3>
+
+<p>用自然語言請 AI 建立與修改程式。</p>
+
+<p class="check">課前完成安裝與登入。Agent 可自由選擇，本課以 Claude 示範。</p>
+</div>
+</div>
+
+<div class="prompt"><b>課前小任務</b>請用 Antigravity 產生一個簡單網頁，並成功預覽。確認工具能使用，再開始課堂實作。</div>
+
+<aside class="note">課堂先帶四個操作：開啟專案資料夾、描述需求、預覽成果、提出具體修改。完整留言與登入也需要資料庫及 LINE Login channel；講師應課前準備好設定與可部署的起始專案，或給同步實作同學設定指引。Git 本身沒有帳號。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">03 · 我們來實作吧！</div>
+
+<h2>一個讓會員註冊、留言的部落格</h2>
+
+<p class="lead">所有人可以閱讀文章，會員登入後可以發表留言。</p>
+
+<div class="flow">
+<div><strong>部落格定義</strong><small>文章、閱讀、留言</small></div>
+
+<div><strong>會員定義</strong><small>註冊、登入、權限</small></div>
+
+<div><strong>測試</strong><small>確認資料與功能</small></div>
+
+<div><strong>LINE Login</strong><small>接入真實身分</small></div>
+</div>
+
+<div class="prompt"><b>今天的完成條件</b>文章能閱讀、留言能保存、留言能辨識作者，最後使用 LINE 登入完成留言。</div>
+
+<aside class="note">建議節奏：視角與工具 8 分鐘、需求分解 5 分鐘、部落格 15 分鐘、會員 12 分鐘、測試 8 分鐘、LINE 串接 12 分鐘。部署穿插在實作中。這是使用準備好起始專案的示範安排。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">04 · 部落格功能實作</div>
+
+<h2>先定義網站需要做什麼</h2>
+
+<div class="grid">
+<div class="block">
+<h3>文章功能</h3>
+
+<p>文章列表<br>文章內容頁<br>標題、摘要與內容</p>
+</div>
+
+<div class="block">
+<h3>留言功能</h3>
+
+<p>閱讀留言<br>新增留言<br>刪除自己的留言</p>
+</div>
+</div>
+
+<div class="prompt"><b>交給 AI 的需求</b>請規劃一個班級部落格，包含文章列表、文章內容與留言區。訪客可以閱讀，登入會員才能留言。請先列出頁面、資料與實作步驟，再開始建立。</div>
+
+<aside class="note">先用範例文章，不加文章編輯後台。留言要有規則，會員功能稍後接入。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">04 · 部落格功能實作</div>
+
+<h2>畫面、規則與資料，各自負責什麼？</h2>
+
+<div class="grid three">
+<div class="block">
+<h3>前端</h3>
+
+<p>顯示文章、留言與輸入框。</p>
+</div>
+
+<div class="block">
+<h3>後端</h3>
+
+<p>處理留言請求，檢查資料與權限。</p>
+</div>
+
+<div class="block">
+<h3>資料庫</h3>
+
+<p>保存文章、會員及留言。</p>
+</div>
+</div>
+
+<div class="prompt"><b>交給 AI 的需求</b>請建立文章與留言畫面，使用共用資料庫儲存留言。每則留言記錄文章、作者、內容與時間。請依起始專案的架構實作，並標明尚未接通的會員功能。</div>
+
+<p class="check">先看到畫面，再確認重新整理與其他瀏覽器能讀到相同資料。</p>
+
+<aside class="note">留言只存在本機瀏覽器不等於共用資料庫。未接會員時可先用開發測試資料，正式留言入口需等待會員與權限接通。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">04 · 部落格功能實作</div>
+
+<h2>第一版完成，就先部署一次</h2>
+
+<div class="grid">
+<div class="block">
+<h3>Git + GitHub</h3>
+
+<p>保存一次修改版本。<br>把程式碼推送到遠端專案。</p>
+</div>
+
+<div class="block">
+<h3>Netlify</h3>
+
+<p>連接 GitHub 專案。<br>依架構設定建置與環境變數。</p>
+</div>
+</div>
+
+<p class="lead">取得網站網址，從手機或另一個瀏覽器開啟。</p>
+
+<div class="prompt"><b>交給 AI 的需求</b>請依現有專案整理 Netlify 部署步驟，列出前端、後端與資料庫需要的設定。秘密值放在後端環境變數，並告訴我如何確認部署成功。</div>
+
+<aside class="note">部署貫穿實作，不再另外增加一大段理論。純靜態 HTML 不足以獨自完成安全登入與多人共用留言，需要相容的後端函式或外部後端服務與資料庫。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">05 · 會員功能實作</div>
+
+<h2>先定義網站自己的會員</h2>
+
+<table>
+<thead>
+<tr><th>功能</th><th>規則</th></tr>
+</thead>
+
+<tbody>
+<tr><td>註冊</td><td>建立網站會員資料，同一身分不重複建立</td></tr>
+
+<tr><td>登入</td><td>確認會員身分，維持登入狀態</td></tr>
+
+<tr><td>留言</td><td>用登入會員作為作者</td></tr>
+
+<tr><td>刪除</td><td>只允許作者刪除自己的留言</td></tr>
+
+<tr><td>登出</td><td>結束登入狀態，不能繼續新增留言</td></tr>
+</tbody>
+</table>
+
+<p class="check">會員資料包含網站會員 ID、顯示名稱與外部身分識別。</p>
+
+<aside class="note">先設計網站資料與規則，最後用 LINE 當登入來源。會員註冊可以在第一次 LINE 登入成功時自動完成。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">05 · 會員功能實作</div>
+
+<h2>先用測試身分，接通會員與留言</h2>
+
+<div class="prompt"><b>交給 AI 的需求</b>請實作會員資料與留言權限。先提供僅限開發環境的測試會員 A、B，用來驗證註冊、登入、登出。後端用登入狀態決定作者，並檢查刪除權限。LINE 串接後替換測試登入，正式環境必須關閉測試入口。</div>
+
+<div class="grid">
+<div class="block">
+<h3>會員 A</h3>
+
+<p>新增一則留言。<br>能刪除自己的留言。</p>
+</div>
+
+<div class="block">
+<h3>會員 B</h3>
+
+<p>看到 A 的留言。<br>不能刪除 A 的留言。</p>
+</div>
+</div>
+
+<aside class="note">這裡不另做一套帳號密碼登入。開發測試入口不能成為公開網站的登入漏洞；公開測試前須確認環境隔離或關閉入口。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">06 · 測試</div>
+
+<h2>我們怎麼知道功能真的完成了？</h2>
+
+<table>
+<thead>
+<tr><th>測試操作</th><th>預期結果</th></tr>
+</thead>
+
+<tbody>
+<tr><td>未登入發表留言</td><td>後端拒絕，畫面提示登入</td></tr>
+
+<tr><td>會員 A 發表留言</td><td>留言顯示正確作者</td></tr>
+
+<tr><td>重新整理、換瀏覽器</td><td>仍能讀到已保存的留言</td></tr>
+
+<tr><td>會員 B 刪除 A 的留言</td><td>後端拒絕刪除</td></tr>
+
+<tr><td>空白留言、送出失敗</td><td>顯示清楚提示，不假裝成功</td></tr>
+
+<tr><td>登出後再次留言</td><td>要求重新登入</td></tr>
+</tbody>
+</table>
+
+<aside class="note">除了手動操作，也請 AI 提供對應權限檢查。僅隱藏刪除按鈕不能證明後端權限正確。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">06 · 測試</div>
+
+<h2>遇到問題，怎麼讓 AI 協助修正？</h2>
+
+<div class="grid">
+<div class="block">
+<h3>描述操作與預期</h3>
+
+<p>「我用會員 B 刪除 A 的留言，預期應該拒絕。」</p>
+</div>
+
+<div class="block">
+<h3>描述實際結果</h3>
+
+<p>「實際上留言被刪掉了。請檢查後端權限。」</p>
+</div>
+</div>
+
+<div class="prompt"><b>交給 AI 的需求</b>請根據這個重現步驟定位原因，提出修正並說明如何驗證。修正後重新檢查未登入、作者本人及其他會員的操作結果。</div>
+
+<p class="lead">修正後，再做同一個測試確認結果。</p>
+
+<aside class="note">示範一個錯誤回報。錯誤訊息可以給 AI，秘密金鑰與會員個資需移除。不要只要求「幫我修好」。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">07 · 串接 LINE Login</div>
+
+<h2>把測試身分換成 LINE 身分</h2>
+
+<div class="flow">
+<div><strong>網站入口</strong><small>按下 LINE 登入</small></div>
+
+<div><strong>LINE 授權</strong><small>使用者登入並同意</small></div>
+
+<div><strong>後端驗證</strong><small>處理授權回傳</small></div>
+
+<div><strong>會員登入</strong><small>找到會員或首次建立</small></div>
+</div>
+
+<p class="lead">LINE 確認外部身分，網站保存自己的會員資料與權限。</p>
+
+<p class="check">首次登入完成會員註冊；再次登入找到同一位會員。</p>
+
+<aside class="note">這是概念流程，不是完整協定細節。LINE Login 不等於 LINE 聊天機器人。額外手機或班級資格驗證可以留作課後延伸。</aside>
+</section>
+
+<section class="slide protected">
+<div class="label">07 · 串接 LINE Login</div>
+
+<h2>完成設定，跑一次真正的登入與留言</h2>
+
+<div class="prompt"><b>交給 AI 的需求</b>請將會員登入串接 LINE Login，列出 channel、回呼網址與後端環境變數設定。後端完成身分驗證並維持登入狀態，首次登入建立會員。請處理取消授權，並關閉正式環境的測試登入。</div>
+
+<div class="grid">
+<div class="block">
+<h3>整合驗收</h3>
+
+<p>首次登入不漏建會員。<br>再次登入不重複建立。<br>登入後能留言，登出後不能。</p>
+</div>
+
+<div class="block">
+<h3>持續交付</h3>
+
+<p>提交並推送新版本。<br>確認 Netlify 部署結果。<br>在線上網址再跑一次流程。</p>
+</div>
+</div>
+
+<aside class="note">課前準備 LINE channel，並確認正式網址的回呼設定。先講測試，再串接，最後仍需整合測試。Git 更新觸發設定好的建置、檢查與部署；自動化測試需要額外配置。</aside>
+</section>
+
+</main>
+
+<footer><a class="section-link" href="index.html">首頁</a><button id="prev" aria-label="上一張">上一張</button><button id="next" aria-label="下一張">下一張</button><select id="jump" aria-label="選擇投影片"></select><button id="print">列印 / PDF</button><span id="counter" aria-live="polite"></span></footer>
+
+<div id="progress"></div>
+
+<dialog id="password-dialog" aria-labelledby="password-title">
+<div id="password-form">
+<h2 id="password-title">輸入課程密碼</h2>
+
+<p>解鎖課程內容與課後閱讀。</p>
+<label for="course-password">密碼</label><input id="course-password" type="password" autocomplete="off" required aria-describedby="password-error">
+<div id="password-error" role="alert"></div>
+
+<div class="dialog-actions"><button type="button" id="password-unlock">解鎖</button><button type="button" id="password-cancel">取消</button></div>
+</div>
+</dialog>
+
+</body>
+</html>

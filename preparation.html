@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>課前準備 · 用 Vibe Coding 做出會員留言部落格</title>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/slides.js" defer></script>
+</head>
+<body >
+<header><span>VIBE CODING 實作課 · 60 分鐘</span>
+<div><button id="notes" aria-pressed="false">講者筆記</button> <button id="fullscreen">全螢幕</button></div>
+</header>
+
+<nav class="site-nav" aria-label="課程導覽"><a href="index.html">首頁</a><a href="preparation.html" aria-current="page">課前準備</a><a href="course.html">課程內容</a><a href="reading.html">課後閱讀</a></nav>
+
+<main>
+
+<section class="slide" id="preparation">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>1. 建立 GitHub 帳號</h2>
+
+<p><a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">開啟 GitHub 註冊頁</a></p>
+
+<ol><li>依頁面提示選擇註冊方式。</li><li>設定帳號資料與使用者名稱。</li><li>完成畫面要求的驗證，確認 Email 已驗證。</li><li>登入後，確認右上角能找到自己的個人帳號。</li></ol>
+
+<p class="check">Windows 與 Mac 都用瀏覽器操作。已有帳號的同學直接登入即可。</p>
+
+<p class="check">完成條件：能登入 GitHub，並記得自己的使用者名稱。</p>
+
+<aside class="note">官方指引：https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github 。頁面可能提供 Email 或其他帳號註冊方式，以實際提示為準。</aside>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>2. 使用 GitHub 帳號註冊 Netlify</h2>
+
+<p><a href="https://app.netlify.com/signup" target="_blank" rel="noopener noreferrer">開啟 Netlify 註冊頁</a></p>
+
+<ol><li>先確認瀏覽器已登入剛才的 GitHub 帳號。</li><li>在 Netlify 註冊頁選擇 GitHub。</li><li>若跳到 GitHub 授權頁，確認帳號後同意登入所需授權。</li><li>回到 Netlify，依畫面完成初始設定。</li><li>能進入 Netlify 管理頁面，就完成帳號準備。</li></ol>
+
+<p class="check">Windows 與 Mac 操作相同。今天先完成註冊，專案部署在課堂進行。</p>
+
+<aside class="note">註冊 Netlify 與授權部署某個 GitHub repository 是不同步驟；不要將登入授權誤認為已完成專案串接。參考 https://docs.netlify.com/manage/accounts-and-billing/user-settings/ 。</aside>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>3. 安裝 Antigravity</h2>
+
+<p><a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer">開啟 Antigravity 官方下載頁</a>，選擇本課使用的 <strong>Antigravity IDE</strong>。</p>
+
+<div class="grid">
+<div class="block">
+<h3>Windows</h3>
+
+<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/L0rEJdU8fmA" title="Windows：安裝 Antigravity 教學影片" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+
+<p class="video-link"><a href="https://www.youtube.com/watch?v=L0rEJdU8fmA" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 Windows 教學</a></p>
+
+<p>選 Windows 與對應架構。<br>下載後執行安裝程式，依提示完成安裝。<br>從開始選單開啟 Antigravity。</p>
+
+<p class="check">設定 → 系統 → 關於 → 系統類型：確認 x64 或 ARM64。</p>
+</div>
+
+<div class="block">
+<h3>Mac</h3>
+
+<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/P3u3w96lR7U" title="Mac：安裝 Antigravity 教學影片" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+
+<p class="video-link"><a href="https://www.youtube.com/watch?v=P3u3w96lR7U" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 Mac 教學</a></p>
+
+<p>選 macOS 與對應晶片。<br>打開下載檔，依安裝提示完成。<br>從「應用程式」開啟 Antigravity。</p>
+
+<p class="check">Apple 選單 → 關於這台 Mac：M 系列選 Apple Silicon，Intel 選 Intel。</p>
+</div>
+</div>
+
+<aside class="note">官方下載頁同時提供多種產品，講師應指明 IDE，並於課前提供示範使用的版本。遇到系統版本不支援時請先聯絡講師，勿隨意安裝非官方來源。</aside>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>3. 登入並確認 Antigravity 可以使用</h2>
+
+<ol><li>開啟 Antigravity，依初始設定提示操作。</li><li>選擇登入，依提示在瀏覽器完成帳號驗證。</li><li>返回 Antigravity，確認可以開啟專案與使用 AI 對話。</li><li>建立一個「blog-class」資料夾，並在工具內開啟。</li></ol>
+
+<div class="prompt"><b>第一次交給 AI 的任務</b>請在這個專案建立一個簡單的歡迎網頁，標題是「我的部落格」，並告訴我如何預覽。請先用不需要額外套件的方式完成。</div>
+
+<p class="check">完成條件：看得到網頁，再請 AI 修改標題，確認更新。</p>
+
+<aside class="note">官方入門文件：https://antigravity.google/docs 。實際登入方式、介面與可用額度依目前產品及帳號而定。若不能使用 AI，應在課前排除。</aside>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>4. 安裝 Node.js，npm 會一起安裝</h2>
+
+<p>Node.js 執行專案工具；npm 用來安裝專案需要的套件。</p>
+
+<p><a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">開啟 Node.js 官方下載頁</a>，選擇 <strong>LTS</strong> 與自己的作業系統。</p>
+
+<div class="grid">
+<div class="block">
+<h3>Windows</h3>
+
+<p>選適合電腦架構的 .msi 安裝檔。<br>執行安裝，保留 npm 與 PATH 預設選項。<br>安裝後重新開啟 Antigravity。</p>
+</div>
+
+<div class="block">
+<h3>Mac</h3>
+
+<p>選 macOS 的 .pkg 安裝檔。<br>打開安裝程式，依提示完成。<br>安裝後重新開啟 Antigravity。</p>
+</div>
+</div>
+
+<p class="check">已有 Node.js 的同學先檢查版本；依講師起始專案要求決定是否更新。</p>
+
+<aside class="note">npm 官方安裝文件：https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/ 。簡單 HTML 不一定需要 Node.js，但本課若使用套件與建置工具就需要。講師應固定起始專案支援的 LTS 版本，課堂不另教版本管理器。</aside>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>5. 選擇 Vibe Coding Agent</h2>
+
+<p class="lead">你可以選擇自己喜歡的 Agent，這堂課我使用 <strong>Claude</strong> 示範。</p>
+
+<div class="grid">
+<div class="block">
+<h3>開發工具</h3>
+
+<p>Antigravity 是我們開啟專案、查看程式與預覽成果的工作環境。</p>
+</div>
+
+<div class="block">
+<h3>Vibe Coding Agent</h3>
+
+<p>理解你的需求，協助建立、修改與檢查程式。請選擇能操作專案檔案的 Agent。</p>
+</div>
+</div>
+
+<ol><li>依你選擇的 Agent 完成設定與登入。</li><li>確認 Agent 能存取「blog-class」專案。</li><li>請它修改網頁標題，重新預覽確認結果。</li></ol>
+
+<p class="check">Windows 與 Mac 都需完成相同的使用測試；安裝方式依所選 Agent 的官方指引。</p>
+
+<aside class="note">講師使用 Claude，同學可自由選擇 Agent。Claude 模型與 Claude Code 是不同層次的選擇，依講師實際示範配置說明；不要預設每個工具都支援相同模型或登入方式。學生應於課前確認能使用且可讀寫專案。</aside>
+</section>
+
+<section class="slide">
+<div class="label">課前準備 · Windows / Mac</div>
+
+<h2>6. 檢查安裝結果</h2>
+
+<div class="grid">
+<div class="block">
+<h3>Windows</h3>
+
+<p>開啟開始選單，搜尋並開啟「命令提示字元」。</p>
+
+<p><code>node -v</code><br><code>npm -v</code></p>
+
+<p class="check">PowerShell 若出現 npm.ps1 執行限制，先用命令提示字元或 <code>npm.cmd -v</code>。</p>
+</div>
+
+<div class="block">
+<h3>Mac</h3>
+
+<p>按 Command + 空白鍵，搜尋並開啟「終端機」。</p>
+
+<p><code>node -v</code><br><code>npm -v</code></p>
+
+<p class="check">每行輸入後按 Enter。兩個指令都應顯示版本號。</p>
+</div>
+</div>
+
+<p class="check">找不到指令時，先關閉並重開終端機與 Antigravity；仍失敗就把錯誤訊息提供給講師。</p>
+
+<p class="check">另檢查 <code>git --version</code>。若未安裝，依 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">Git 官方指引</a>完成，Mac 依系統提示安裝開發工具。</p>
+<a class="section-link" href="course.html">準備完成，開始課程</a>
+<aside class="note">Node.js 安裝不等於已安裝 Git，GitHub 帳號也不會自動提供本機 Git。先確認所有同學的 Git 可用。安裝 npm 不需要建立 npm 帳號。</aside>
+</section>
+
+</main>
+
+<footer><a class="section-link" href="index.html">首頁</a><button id="prev" aria-label="上一張">上一張</button><button id="next" aria-label="下一張">下一張</button><select id="jump" aria-label="選擇投影片"></select><button id="print">列印 / PDF</button><span id="counter" aria-live="polite"></span></footer>
+
+<div id="progress"></div>
+
+<dialog id="password-dialog" aria-labelledby="password-title">
+<div id="password-form">
+<h2 id="password-title">輸入課程密碼</h2>
+
+<p>解鎖課程內容與課後閱讀。</p>
+<label for="course-password">密碼</label><input id="course-password" type="password" autocomplete="off" required aria-describedby="password-error">
+<div id="password-error" role="alert"></div>
+
+<div class="dialog-actions"><button type="button" id="password-unlock">解鎖</button><button type="button" id="password-cancel">取消</button></div>
+</div>
+</dialog>
+
+</body>
+</html>

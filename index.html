@@ -1,88 +1,47 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>用 Vibe Coding 做出會員留言部落格</title>
-<style>
-:root{--ink:#202522;--muted:#505b54;--green:#176b46;--paper:#ffffff;--line:#dde4df}
-*{box-sizing:border-box}body{margin:0;background:#f5f7f5;color:var(--ink);font-family:system-ui,"Noto Sans TC","Microsoft JhengHei",sans-serif;letter-spacing:0}
-header{max-width:1200px;margin:auto;min-height:72px;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);font-size:14px}
-header>span{font-weight:700}header>div{display:flex;gap:8px}
-button,select{font:inherit;font-size:15px;padding:10px 16px;border:1px solid #b5c2b9;border-radius:6px;background:white;color:var(--ink);cursor:pointer}
-button:hover{background:#edf3ef;border-color:var(--green)}button:disabled{opacity:.4;cursor:default}
-button:focus-visible,select:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-button[aria-pressed="true"]{background:#e8f2eb}
-main{max-width:1120px;margin:28px auto;min-height:calc(100vh - 205px);padding:38px 48px;background:white;border:1px solid var(--line);border-radius:8px}
-.slide{display:none}.slide.active{display:block}body:not(.unlocked) .slide.protected{display:none!important}
-.label{font-size:15px;font-weight:700;color:var(--green);margin-bottom:16px}
-h1{font-size:42px;line-height:1.35;margin:0 0 16px;letter-spacing:0}
-h2{font-size:32px;line-height:1.4;margin:0 0 26px;letter-spacing:0}
-h3{font-size:23px;line-height:1.45;margin:0 0 10px}
-p,li{font-size:21px;line-height:1.8}p{margin:12px 0}ol{padding-left:1.6em}li{padding-left:4px;margin:7px 0}
-.lead{font-size:23px;line-height:1.7;color:var(--muted)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:22px 0}.three{grid-template-columns:repeat(3,1fr);gap:28px}
-.block{min-width:0;border-top:2px solid #d3dfd6;padding-top:18px}
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:28px 0}.flow>div{min-width:0;border-top:2px solid #d3dfd6;padding-top:16px}
-.flow strong{display:block;font-size:23px;line-height:1.5}.flow small{display:block;font-size:18px;line-height:1.65;color:var(--muted);margin-top:8px}
-.prompt{background:#f0f5f1;border-left:4px solid var(--green);padding:20px 24px;margin-top:24px;font-size:21px;line-height:1.8}
-.prompt b{display:block;font-size:17px;color:var(--green);margin-bottom:8px}
-.check{font-size:18px;line-height:1.8;color:var(--muted);margin-top:18px}
-.note{display:none;margin-top:26px;padding-top:18px;border-top:1px dashed #b5c2b9;color:var(--muted);font-size:17px;line-height:1.8;overflow-wrap:anywhere}
-body.notes .slide.active .note{display:block}
-a{color:#105a9b;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
-code{font-size:.9em;background:#edf1ed;padding:3px 6px;border-radius:3px;overflow-wrap:anywhere}
-table{width:100%;border-collapse:collapse;font-size:20px}td,th{padding:15px 14px;text-align:left;line-height:1.65;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{font-size:18px;background:#f1f5f2;color:var(--ink)}
-footer{max-width:1120px;margin:0 auto;padding:0 0 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-#jump{max-width:350px;min-width:0}#counter{margin-left:auto;font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
-#progress{height:3px;background:var(--green);position:fixed;bottom:0;left:0}
-#home{max-width:850px;margin:auto;padding:12px 0}#home .lead{margin-bottom:32px}
-#home .grid{display:block;border-top:1px solid var(--line);margin:0}
-#home .block{border-top:0;border-bottom:1px solid var(--line);padding:24px 0;display:grid;grid-template-columns:1fr auto;column-gap:28px;align-items:center}
-#home .block h3{grid-column:1;margin:0;font-size:24px}
-#home .block p{grid-column:1;font-size:18px;color:var(--muted);margin:6px 0 0}
-#home .block button{grid-column:2;grid-row:1 / span 2;background:var(--green);color:white;border-color:var(--green);min-width:120px}
-#home .block button:hover{background:#105235}
-body.home-view footer,body.home-view #progress,body.home-view header>div{display:none}
-dialog{width:min(460px,90vw);padding:28px;background:white;border:1px solid #b5c2b9;border-radius:8px;color:var(--ink)}
-dialog::backdrop{background:#19281f80}dialog h2{font-size:26px;margin-bottom:12px}dialog p{font-size:18px}
-dialog input{width:100%;font:inherit;border:1px solid #b5c2b9;border-radius:5px;padding:12px;margin:12px 0}
-.dialog-actions{display:flex;gap:10px}dialog #password-unlock{background:var(--green);color:white;border-color:var(--green)}
-#password-error{color:#a12626;font-size:16px;min-height:28px}
-@media(max-width:1150px){main{margin:24px;max-width:none}footer{margin:0 24px}}
-@media(max-width:760px){header{padding:16px 20px;align-items:flex-start;font-size:13px}header>div{flex-wrap:wrap;justify-content:flex-end}header button{font-size:13px;padding:8px 10px}main{margin:16px;padding:26px 22px;min-height:calc(100vh - 210px)}h1{font-size:32px}h2{font-size:27px}h3{font-size:22px}p,li,.lead{font-size:19px}.grid,.three,.flow{grid-template-columns:1fr;gap:22px}.prompt{font-size:19px;padding:18px}.check{font-size:17px}table{font-size:17px}td,th{padding:12px 8px}th{font-size:16px}footer{margin:0 16px;gap:8px}footer button,footer select{padding:9px 11px;font-size:13px}#jump{max-width:240px;flex:1}#home .block{grid-template-columns:1fr;gap:10px;padding:22px 0}#home .block h3,#home .block p,#home .block button{grid-column:1;grid-row:auto}#home .block button{justify-self:start;margin-top:8px}#home .block p{margin:0}#home .lead{margin-bottom:24px}dialog{padding:24px}}
-@media print{header,footer,#progress,dialog,button[data-target]{display:none!important}body{background:white}main{border:0;margin:0;padding:0;max-width:none}.slide{display:block!important;break-after:page;padding:24px}.note{display:none!important}h1{font-size:34px}h2{font-size:28px}p,li,.prompt{font-size:18px}@page{size:A4 landscape;margin:12mm}}
-.video-frame{width:100%;aspect-ratio:16/9;background:#eef2ef;margin:16px 0;border-radius:6px;overflow:hidden}.video-frame iframe{display:block;width:100%;height:100%;border:0}.video-link{font-size:17px;line-height:1.6}@media print{.video-frame{display:none}}
-</style></head><body>
-<header><span>VIBE CODING 實作課 · 60 分鐘</span><div><button id="notes" aria-pressed="false">講者筆記</button> <button id="fullscreen">全螢幕</button></div></header>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>首頁 · 用 Vibe Coding 做出會員留言部落格</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="home-view">
+<header><span>VIBE CODING 實作課 · 60 分鐘</span></header>
+
+<nav class="site-nav" aria-label="課程導覽"><a href="index.html" aria-current="page">首頁</a><a href="preparation.html">課前準備</a><a href="course.html">課程內容</a><a href="reading.html">課後閱讀</a></nav>
+
 <main>
-<section class="slide" id="home"><div class="label">VIBE CODING 實作課</div><h1>會員留言部落格</h1><p class="lead">用 AI 逐步實作，從需求到上線。</p><div class="grid three"><div class="block"><h3>課前準備</h3><p>工具、帳號與環境確認。</p><button data-target="preparation">課前準備</button></div><div class="block"><h3>課程內容</h3><p>功能分解、實作、測試與 LINE 登入。</p><button data-target="course">課程內容</button></div><div class="block"><h3>課後閱讀</h3><p>回顧概念，選擇下一步研究方向。</p><button data-target="reading">課後閱讀</button></div></div></section>
-<section class="slide" id="preparation"><div class="label">課前準備 · Windows / Mac</div><h2>1. 建立 GitHub 帳號</h2><p><a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">開啟 GitHub 註冊頁</a></p><ol><li>依頁面提示選擇註冊方式。</li><li>設定帳號資料與使用者名稱。</li><li>完成畫面要求的驗證，確認 Email 已驗證。</li><li>登入後，確認右上角能找到自己的個人帳號。</li></ol><p class="check">Windows 與 Mac 都用瀏覽器操作。已有帳號的同學直接登入即可。</p><p class="check">完成條件：能登入 GitHub，並記得自己的使用者名稱。</p><aside class="note">官方指引：https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github 。頁面可能提供 Email 或其他帳號註冊方式，以實際提示為準。</aside></section>
-<section class="slide"><div class="label">課前準備 · Windows / Mac</div><h2>2. 使用 GitHub 帳號註冊 Netlify</h2><p><a href="https://app.netlify.com/signup" target="_blank" rel="noopener noreferrer">開啟 Netlify 註冊頁</a></p><ol><li>先確認瀏覽器已登入剛才的 GitHub 帳號。</li><li>在 Netlify 註冊頁選擇 GitHub。</li><li>若跳到 GitHub 授權頁，確認帳號後同意登入所需授權。</li><li>回到 Netlify，依畫面完成初始設定。</li><li>能進入 Netlify 管理頁面，就完成帳號準備。</li></ol><p class="check">Windows 與 Mac 操作相同。今天先完成註冊，專案部署在課堂進行。</p><aside class="note">註冊 Netlify 與授權部署某個 GitHub repository 是不同步驟；不要將登入授權誤認為已完成專案串接。參考 https://docs.netlify.com/manage/accounts-and-billing/user-settings/ 。</aside></section>
-<section class="slide"><div class="label">課前準備 · Windows / Mac</div><h2>3. 安裝 Antigravity</h2><p><a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer">開啟 Antigravity 官方下載頁</a>，選擇本課使用的 <strong>Antigravity IDE</strong>。</p><div class="grid"><div class="block"><h3>Windows</h3><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/L0rEJdU8fmA" title="Windows：安裝 Antigravity 教學影片" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="video-link"><a href="https://www.youtube.com/watch?v=L0rEJdU8fmA" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 Windows 教學</a></p><p>選 Windows 與對應架構。<br>下載後執行安裝程式，依提示完成安裝。<br>從開始選單開啟 Antigravity。</p><p class="check">設定 → 系統 → 關於 → 系統類型：確認 x64 或 ARM64。</p></div><div class="block"><h3>Mac</h3><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/P3u3w96lR7U" title="Mac：安裝 Antigravity 教學影片" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="video-link"><a href="https://www.youtube.com/watch?v=P3u3w96lR7U" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 Mac 教學</a></p><p>選 macOS 與對應晶片。<br>打開下載檔，依安裝提示完成。<br>從「應用程式」開啟 Antigravity。</p><p class="check">Apple 選單 → 關於這台 Mac：M 系列選 Apple Silicon，Intel 選 Intel。</p></div></div><aside class="note">官方下載頁同時提供多種產品，講師應指明 IDE，並於課前提供示範使用的版本。遇到系統版本不支援時請先聯絡講師，勿隨意安裝非官方來源。</aside></section>
-<section class="slide"><div class="label">課前準備 · Windows / Mac</div><h2>3. 登入並確認 Antigravity 可以使用</h2><ol><li>開啟 Antigravity，依初始設定提示操作。</li><li>選擇登入，依提示在瀏覽器完成帳號驗證。</li><li>返回 Antigravity，確認可以開啟專案與使用 AI 對話。</li><li>建立一個「blog-class」資料夾，並在工具內開啟。</li></ol><div class="prompt"><b>第一次交給 AI 的任務</b>請在這個專案建立一個簡單的歡迎網頁，標題是「我的部落格」，並告訴我如何預覽。請先用不需要額外套件的方式完成。</div><p class="check">完成條件：看得到網頁，再請 AI 修改標題，確認更新。</p><aside class="note">官方入門文件：https://antigravity.google/docs 。實際登入方式、介面與可用額度依目前產品及帳號而定。若不能使用 AI，應在課前排除。</aside></section>
-<section class="slide"><div class="label">課前準備 · Windows / Mac</div><h2>4. 安裝 Node.js，npm 會一起安裝</h2><p>Node.js 執行專案工具；npm 用來安裝專案需要的套件。</p><p><a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">開啟 Node.js 官方下載頁</a>，選擇 <strong>LTS</strong> 與自己的作業系統。</p><div class="grid"><div class="block"><h3>Windows</h3><p>選適合電腦架構的 .msi 安裝檔。<br>執行安裝，保留 npm 與 PATH 預設選項。<br>安裝後重新開啟 Antigravity。</p></div><div class="block"><h3>Mac</h3><p>選 macOS 的 .pkg 安裝檔。<br>打開安裝程式，依提示完成。<br>安裝後重新開啟 Antigravity。</p></div></div><p class="check">已有 Node.js 的同學先檢查版本；依講師起始專案要求決定是否更新。</p><aside class="note">npm 官方安裝文件：https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/ 。簡單 HTML 不一定需要 Node.js，但本課若使用套件與建置工具就需要。講師應固定起始專案支援的 LTS 版本，課堂不另教版本管理器。</aside></section>
-<section class="slide"><div class="label">課前準備 · Windows / Mac</div><h2>5. 選擇 Vibe Coding Agent</h2><p class="lead">你可以選擇自己喜歡的 Agent，這堂課我使用 <strong>Claude</strong> 示範。</p><div class="grid"><div class="block"><h3>開發工具</h3><p>Antigravity 是我們開啟專案、查看程式與預覽成果的工作環境。</p></div><div class="block"><h3>Vibe Coding Agent</h3><p>理解你的需求，協助建立、修改與檢查程式。請選擇能操作專案檔案的 Agent。</p></div></div><ol><li>依你選擇的 Agent 完成設定與登入。</li><li>確認 Agent 能存取「blog-class」專案。</li><li>請它修改網頁標題，重新預覽確認結果。</li></ol><p class="check">Windows 與 Mac 都需完成相同的使用測試；安裝方式依所選 Agent 的官方指引。</p><aside class="note">講師使用 Claude，同學可自由選擇 Agent。Claude 模型與 Claude Code 是不同層次的選擇，依講師實際示範配置說明；不要預設每個工具都支援相同模型或登入方式。學生應於課前確認能使用且可讀寫專案。</aside></section>
-<section class="slide"><div class="label">課前準備 · Windows / Mac</div><h2>6. 檢查安裝結果</h2><div class="grid"><div class="block"><h3>Windows</h3><p>開啟開始選單，搜尋並開啟「命令提示字元」。</p><p><code>node -v</code><br><code>npm -v</code></p><p class="check">PowerShell 若出現 npm.ps1 執行限制，先用命令提示字元或 <code>npm.cmd -v</code>。</p></div><div class="block"><h3>Mac</h3><p>按 Command + 空白鍵，搜尋並開啟「終端機」。</p><p><code>node -v</code><br><code>npm -v</code></p><p class="check">每行輸入後按 Enter。兩個指令都應顯示版本號。</p></div></div><p class="check">找不到指令時，先關閉並重開終端機與 Antigravity；仍失敗就把錯誤訊息提供給講師。</p><p class="check">另檢查 <code>git --version</code>。若未安裝，依 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">Git 官方指引</a>完成，Mac 依系統提示安裝開發工具。</p><button data-target="course">準備完成，開始課程</button><aside class="note">Node.js 安裝不等於已安裝 Git，GitHub 帳號也不會自動提供本機 Git。先確認所有同學的 Git 可用。安裝 npm 不需要建立 npm 帳號。</aside></section>
-<section class="slide protected" id="course"><div class="label">01 · 使用者視角 vs 工程師視角</div><h2>同一個部落格，兩種工作流程</h2><div class="grid"><div class="block"><h3>使用者視角</h3><ol><li>進入部落格</li><li>用 LINE 登入</li><li>發表留言</li></ol></div><div class="block"><h3>工程師視角</h3><ol><li>定義部落格功能</li><li>定義會員與註冊功能</li><li>實作與測試留言</li><li>串接 LINE Login</li></ol></div></div><p class="lead">我們用 AI，把使用者的需求一步步變成可以操作的網站。</p><aside class="note">先展示成品，再切換到工程師視角。開發順序不同於使用者操作順序。這堂課以具備會員與留言功能的部落格為案例。</aside></section>
-<section class="slide protected"><div class="label">02 · 所需工具</div><h2>開始前，準備好三項工具</h2><div class="grid three"><div class="block"><h3>GitHub 帳號</h3><p>存放程式碼與版本。</p><p class="check">Git 負責版本管理。GitHub 是存放 Git 專案的平台。</p></div><div class="block"><h3>Netlify 帳號</h3><p>部署網站，取得可分享的網址。</p><p class="check">連接 GitHub，程式更新後觸發部署。</p></div><div class="block"><h3>Antigravity</h3><p>用自然語言請 AI 建立與修改程式。</p><p class="check">課前完成安裝與登入。Agent 可自由選擇，本課以 Claude 示範。</p></div></div><div class="prompt"><b>課前小任務</b>請用 Antigravity 產生一個簡單網頁，並成功預覽。確認工具能使用，再開始課堂實作。</div><aside class="note">課堂先帶四個操作：開啟專案資料夾、描述需求、預覽成果、提出具體修改。完整留言與登入也需要資料庫及 LINE Login channel；講師應課前準備好設定與可部署的起始專案，或給同步實作同學設定指引。Git 本身沒有帳號。</aside></section>
-<section class="slide protected"><div class="label">03 · 我們來實作吧！</div><h2>一個讓會員註冊、留言的部落格</h2><p class="lead">所有人可以閱讀文章，會員登入後可以發表留言。</p><div class="flow"><div><strong>部落格定義</strong><small>文章、閱讀、留言</small></div><div><strong>會員定義</strong><small>註冊、登入、權限</small></div><div><strong>測試</strong><small>確認資料與功能</small></div><div><strong>LINE Login</strong><small>接入真實身分</small></div></div><div class="prompt"><b>今天的完成條件</b>文章能閱讀、留言能保存、留言能辨識作者，最後使用 LINE 登入完成留言。</div><aside class="note">建議節奏：視角與工具 8 分鐘、需求分解 5 分鐘、部落格 15 分鐘、會員 12 分鐘、測試 8 分鐘、LINE 串接 12 分鐘。部署穿插在實作中。這是使用準備好起始專案的示範安排。</aside></section>
-<section class="slide protected"><div class="label">04 · 部落格功能實作</div><h2>先定義網站需要做什麼</h2><div class="grid"><div class="block"><h3>文章功能</h3><p>文章列表<br>文章內容頁<br>標題、摘要與內容</p></div><div class="block"><h3>留言功能</h3><p>閱讀留言<br>新增留言<br>刪除自己的留言</p></div></div><div class="prompt"><b>交給 AI 的需求</b>請規劃一個班級部落格，包含文章列表、文章內容與留言區。訪客可以閱讀，登入會員才能留言。請先列出頁面、資料與實作步驟，再開始建立。</div><aside class="note">先用範例文章，不加文章編輯後台。留言要有規則，會員功能稍後接入。</aside></section>
-<section class="slide protected"><div class="label">04 · 部落格功能實作</div><h2>畫面、規則與資料，各自負責什麼？</h2><div class="grid three"><div class="block"><h3>前端</h3><p>顯示文章、留言與輸入框。</p></div><div class="block"><h3>後端</h3><p>處理留言請求，檢查資料與權限。</p></div><div class="block"><h3>資料庫</h3><p>保存文章、會員及留言。</p></div></div><div class="prompt"><b>交給 AI 的需求</b>請建立文章與留言畫面，使用共用資料庫儲存留言。每則留言記錄文章、作者、內容與時間。請依起始專案的架構實作，並標明尚未接通的會員功能。</div><p class="check">先看到畫面，再確認重新整理與其他瀏覽器能讀到相同資料。</p><aside class="note">留言只存在本機瀏覽器不等於共用資料庫。未接會員時可先用開發測試資料，正式留言入口需等待會員與權限接通。</aside></section>
-<section class="slide protected"><div class="label">04 · 部落格功能實作</div><h2>第一版完成，就先部署一次</h2><div class="grid"><div class="block"><h3>Git + GitHub</h3><p>保存一次修改版本。<br>把程式碼推送到遠端專案。</p></div><div class="block"><h3>Netlify</h3><p>連接 GitHub 專案。<br>依架構設定建置與環境變數。</p></div></div><p class="lead">取得網站網址，從手機或另一個瀏覽器開啟。</p><div class="prompt"><b>交給 AI 的需求</b>請依現有專案整理 Netlify 部署步驟，列出前端、後端與資料庫需要的設定。秘密值放在後端環境變數，並告訴我如何確認部署成功。</div><aside class="note">部署貫穿實作，不再另外增加一大段理論。純靜態 HTML 不足以獨自完成安全登入與多人共用留言，需要相容的後端函式或外部後端服務與資料庫。</aside></section>
-<section class="slide protected"><div class="label">05 · 會員功能實作</div><h2>先定義網站自己的會員</h2><table><thead><tr><th>功能</th><th>規則</th></tr></thead><tbody><tr><td>註冊</td><td>建立網站會員資料，同一身分不重複建立</td></tr><tr><td>登入</td><td>確認會員身分，維持登入狀態</td></tr><tr><td>留言</td><td>用登入會員作為作者</td></tr><tr><td>刪除</td><td>只允許作者刪除自己的留言</td></tr><tr><td>登出</td><td>結束登入狀態，不能繼續新增留言</td></tr></tbody></table><p class="check">會員資料包含網站會員 ID、顯示名稱與外部身分識別。</p><aside class="note">先設計網站資料與規則，最後用 LINE 當登入來源。會員註冊可以在第一次 LINE 登入成功時自動完成。</aside></section>
-<section class="slide protected"><div class="label">05 · 會員功能實作</div><h2>先用測試身分，接通會員與留言</h2><div class="prompt"><b>交給 AI 的需求</b>請實作會員資料與留言權限。先提供僅限開發環境的測試會員 A、B，用來驗證註冊、登入、登出。後端用登入狀態決定作者，並檢查刪除權限。LINE 串接後替換測試登入，正式環境必須關閉測試入口。</div><div class="grid"><div class="block"><h3>會員 A</h3><p>新增一則留言。<br>能刪除自己的留言。</p></div><div class="block"><h3>會員 B</h3><p>看到 A 的留言。<br>不能刪除 A 的留言。</p></div></div><aside class="note">這裡不另做一套帳號密碼登入。開發測試入口不能成為公開網站的登入漏洞；公開測試前須確認環境隔離或關閉入口。</aside></section>
-<section class="slide protected"><div class="label">06 · 測試</div><h2>我們怎麼知道功能真的完成了？</h2><table><thead><tr><th>測試操作</th><th>預期結果</th></tr></thead><tbody><tr><td>未登入發表留言</td><td>後端拒絕，畫面提示登入</td></tr><tr><td>會員 A 發表留言</td><td>留言顯示正確作者</td></tr><tr><td>重新整理、換瀏覽器</td><td>仍能讀到已保存的留言</td></tr><tr><td>會員 B 刪除 A 的留言</td><td>後端拒絕刪除</td></tr><tr><td>空白留言、送出失敗</td><td>顯示清楚提示，不假裝成功</td></tr><tr><td>登出後再次留言</td><td>要求重新登入</td></tr></tbody></table><aside class="note">除了手動操作，也請 AI 提供對應權限檢查。僅隱藏刪除按鈕不能證明後端權限正確。</aside></section>
-<section class="slide protected"><div class="label">06 · 測試</div><h2>遇到問題，怎麼讓 AI 協助修正？</h2><div class="grid"><div class="block"><h3>描述操作與預期</h3><p>「我用會員 B 刪除 A 的留言，預期應該拒絕。」</p></div><div class="block"><h3>描述實際結果</h3><p>「實際上留言被刪掉了。請檢查後端權限。」</p></div></div><div class="prompt"><b>交給 AI 的需求</b>請根據這個重現步驟定位原因，提出修正並說明如何驗證。修正後重新檢查未登入、作者本人及其他會員的操作結果。</div><p class="lead">修正後，再做同一個測試確認結果。</p><aside class="note">示範一個錯誤回報。錯誤訊息可以給 AI，秘密金鑰與會員個資需移除。不要只要求「幫我修好」。</aside></section>
-<section class="slide protected"><div class="label">07 · 串接 LINE Login</div><h2>把測試身分換成 LINE 身分</h2><div class="flow"><div><strong>網站入口</strong><small>按下 LINE 登入</small></div><div><strong>LINE 授權</strong><small>使用者登入並同意</small></div><div><strong>後端驗證</strong><small>處理授權回傳</small></div><div><strong>會員登入</strong><small>找到會員或首次建立</small></div></div><p class="lead">LINE 確認外部身分，網站保存自己的會員資料與權限。</p><p class="check">首次登入完成會員註冊；再次登入找到同一位會員。</p><aside class="note">這是概念流程，不是完整協定細節。LINE Login 不等於 LINE 聊天機器人。額外手機或班級資格驗證可以留作課後延伸。</aside></section>
-<section class="slide protected"><div class="label">07 · 串接 LINE Login</div><h2>完成設定，跑一次真正的登入與留言</h2><div class="prompt"><b>交給 AI 的需求</b>請將會員登入串接 LINE Login，列出 channel、回呼網址與後端環境變數設定。後端完成身分驗證並維持登入狀態，首次登入建立會員。請處理取消授權，並關閉正式環境的測試登入。</div><div class="grid"><div class="block"><h3>整合驗收</h3><p>首次登入不漏建會員。<br>再次登入不重複建立。<br>登入後能留言，登出後不能。</p></div><div class="block"><h3>持續交付</h3><p>提交並推送新版本。<br>確認 Netlify 部署結果。<br>在線上網址再跑一次流程。</p></div></div><aside class="note">課前準備 LINE channel，並確認正式網址的回呼設定。先講測試，再串接，最後仍需整合測試。Git 更新觸發設定好的建置、檢查與部署；自動化測試需要額外配置。</aside></section>
-<section class="slide protected" id="reading"><div class="label">課後閱讀</div><h2>從今天的成果，回頭理解技術</h2><table><thead><tr><th>今天做了什麼</th><th>接著研究什麼</th></tr></thead><tbody><tr><td>文章與留言畫面</td><td>HTML、CSS、JavaScript 與響應式版面</td></tr><tr><td>保存會員與留言</td><td>後端 API、資料庫與資料關聯</td></tr><tr><td>LINE 登入後留言</td><td>OAuth、登入狀態與後端權限檢查</td></tr><tr><td>保存版本與更新網站</td><td>Git、GitHub、建置與 CI/CD</td></tr></tbody></table><div class="prompt"><b>課後練習</b>選一個小需求，例如顯示留言時間。先寫完成條件，再請 AI 實作、驗證，最後部署新版。</div><p class="check">閱讀方向：MDN Web Docs、Git 官方文件、Netlify Docs 與 LINE Developers 文件。</p><button data-target="home">回到首頁</button></section>
-</main><footer><button data-target="home">首頁</button><button id="prev" aria-label="上一張">上一張</button><button id="next" aria-label="下一張">下一張</button><select id="jump" aria-label="選擇投影片"></select><button id="print">列印 / PDF</button><span id="counter" aria-live="polite"></span></footer><div id="progress"></div>
-<dialog id="password-dialog" aria-labelledby="password-title"><div id="password-form"><h2 id="password-title">輸入課程密碼</h2><p>解鎖課程內容與課後閱讀。</p><label for="course-password">密碼</label><input id="course-password" type="password" autocomplete="off" required aria-describedby="password-error"><div id="password-error" role="alert"></div><div class="dialog-actions"><button type="button" id="password-unlock">解鎖</button><button type="button" id="password-cancel">取消</button></div></div></dialog>
-<script>
-document.querySelectorAll('[data-target]').forEach(button=>button.onclick=()=>show(slides.findIndex(s=>s.id===button.dataset.target)));
-const slides=[...document.querySelectorAll('.slide')];let current=0,unlocked=false,pendingSlide=0;const jump=document.getElementById('jump');const dialog=document.getElementById('password-dialog');const password=document.getElementById('course-password');const error=document.getElementById('password-error');
-function updateMenu(){jump.replaceChildren();slides.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=s.classList.contains('protected')&&!unlocked ? `${i+1}. 需密碼解鎖` : `${i+1}. ${s.querySelector('h1,h2').textContent}`;jump.append(o)});jump.value=current}
-function show(i){const target=Math.max(0,Math.min(slides.length-1,i));if(slides[target].classList.contains('protected')&&!unlocked){pendingSlide=target;jump.value=current;password.value='';error.textContent='';if(!dialog.open)dialog.showModal();password.focus();return}current=target;document.body.classList.toggle('home-view',slides[current].id==='home');slides.forEach((s,n)=>{s.classList.toggle('active',n===current);s.setAttribute('aria-hidden',n!==current)});jump.value=current;document.getElementById('counter').textContent=`${current+1} / ${slides.length}`;document.getElementById('progress').style.width=`${(current+1)/slides.length*100}%`;document.getElementById('prev').disabled=current===0;document.getElementById('next').disabled=current===slides.length-1;try{history.replaceState(null,'',`#slide-${current+1}`)}catch{}window.scrollTo(0,0)}
-function unlockCourse(){if(password.value!=='moz-tutorial'){error.textContent='密碼不正確，請重新輸入。';password.focus();return}unlocked=true;document.body.classList.add('unlocked');password.value='';dialog.close();updateMenu();show(pendingSlide)}
-document.getElementById('password-unlock').onclick=unlockCourse;
-password.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlockCourse()}});
-document.getElementById('password-cancel').onclick=()=>dialog.close();updateMenu();const requestedSlide=(Number(location.hash.match(/slide-(\d+)/)?.[1])||1)-1;show(0);
-document.getElementById('prev').onclick=()=>show(current-1);document.getElementById('next').onclick=()=>show(current+1);jump.onchange=()=>show(Number(jump.value));document.getElementById('notes').onclick=e=>{const on=document.body.classList.toggle('notes');e.target.setAttribute('aria-pressed',on)};document.getElementById('print').onclick=()=>window.print();document.getElementById('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{document.getElementById('fullscreen').textContent='此環境不支援全螢幕'}};document.addEventListener('keydown',e=>{if(dialog.open)return;if(['SELECT','INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName))return;if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(current+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(current-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});show(requestedSlide);
-</script></body></html>
+
+<section class="slide active" id="home">
+<div class="label">VIBE CODING 實作課</div>
+
+<h1>會員留言部落格</h1>
+
+<p class="lead">用 AI 逐步實作，從需求到上線。</p>
+
+<div class="grid three">
+<div class="block">
+<h3>課前準備</h3>
+
+<p>工具、帳號與環境確認。</p>
+<a class="section-link" href="preparation.html">課前準備</a></div>
+
+<div class="block">
+<h3>課程內容</h3>
+
+<p>功能分解、實作、測試與 LINE 登入。</p>
+<a class="section-link" href="course.html">課程內容</a></div>
+
+<div class="block">
+<h3>課後閱讀</h3>
+
+<p>回顧概念，選擇下一步研究方向。</p>
+<a class="section-link" href="reading.html">課後閱讀</a></div>
+</div>
+</section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>課後閱讀 · 用 Vibe Coding 做出會員留言部落格</title>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/slides.js" defer></script>
+</head>
+<body >
+<header><span>VIBE CODING 實作課 · 60 分鐘</span>
+<div><button id="notes" aria-pressed="false">講者筆記</button> <button id="fullscreen">全螢幕</button></div>
+</header>
+
+<nav class="site-nav" aria-label="課程導覽"><a href="index.html">首頁</a><a href="preparation.html">課前準備</a><a href="course.html">課程內容</a><a href="reading.html" aria-current="page">課後閱讀</a></nav>
+
+<main>
+
+<section class="slide protected" id="reading">
+<div class="label">課後閱讀</div>
+
+<h2>從今天的成果，回頭理解技術</h2>
+
+<table>
+<thead>
+<tr><th>今天做了什麼</th><th>接著研究什麼</th></tr>
+</thead>
+
+<tbody>
+<tr><td>文章與留言畫面</td><td>HTML、CSS、JavaScript 與響應式版面</td></tr>
+
+<tr><td>保存會員與留言</td><td>後端 API、資料庫與資料關聯</td></tr>
+
+<tr><td>LINE 登入後留言</td><td>OAuth、登入狀態與後端權限檢查</td></tr>
+
+<tr><td>保存版本與更新網站</td><td>Git、GitHub、建置與 CI/CD</td></tr>
+</tbody>
+</table>
+
+<div class="prompt"><b>課後練習</b>選一個小需求，例如顯示留言時間。先寫完成條件，再請 AI 實作、驗證，最後部署新版。</div>
+
+<p class="check">閱讀方向：MDN Web Docs、Git 官方文件、Netlify Docs 與 LINE Developers 文件。</p>
+<a class="section-link" href="index.html">回到首頁</a></section>
+
+</main>
+
+<footer><a class="section-link" href="index.html">首頁</a><button id="prev" aria-label="上一張">上一張</button><button id="next" aria-label="下一張">下一張</button><select id="jump" aria-label="選擇投影片"></select><button id="print">列印 / PDF</button><span id="counter" aria-live="polite"></span></footer>
+
+<div id="progress"></div>
+
+<dialog id="password-dialog" aria-labelledby="password-title">
+<div id="password-form">
+<h2 id="password-title">輸入課程密碼</h2>
+
+<p>解鎖課程內容與課後閱讀。</p>
+<label for="course-password">密碼</label><input id="course-password" type="password" autocomplete="off" required aria-describedby="password-error">
+<div id="password-error" role="alert"></div>
+
+<div class="dialog-actions"><button type="button" id="password-unlock">解鎖</button><button type="button" id="password-cancel">取消</button></div>
+</div>
+</dialog>
+
+</body>
+</html>
