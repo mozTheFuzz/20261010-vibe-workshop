@@ -17,7 +17,7 @@
 
 <main>
 
-<section class="slide protected course-overview">
+<section class="slide course-overview">
 <p class="overview-kicker">課程地圖 · Overview</p>
 <h2>從想法到上線，一起做出會員留言部落格</h2>
 <p class="lead">先完成並部署部落格第一版，再把 LINE Login 當作延伸功能接上。你不需要先會寫程式，只要跟著每一步操作、確認畫面是否符合預期。</p>
@@ -49,7 +49,7 @@
 <aside class="note">先用這一頁說明整體路線與基本／延伸成果，提醒學員不必先懂所有技術名詞；每一階段都會跟著操作。</aside>
 </section>
 
-<section class="slide protected" id="course">
+<section class="slide" id="course">
 <h2 class="visually-hidden">同一個部落格，兩種視角</h2>
 <figure class="course-illustration">
 <a href="assets/images/user-engineer-perspectives.webp" target="_blank" rel="noopener noreferrer" aria-label="開啟使用者與工程師視角圖解原圖">
@@ -60,7 +60,7 @@
 <aside class="note">先展示成品，再切換到工程師視角。左邊是使用順序，右邊是開發順序，兩邊不是逐項對應。會員先用測試身分驗證，再串接 LINE 登入。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2 class="visually-hidden">三個工具，把網站做出來</h2>
 <figure class="course-illustration">
 <a href="assets/images/workshop-tools-flow.webp" target="_blank" rel="noopener noreferrer" aria-label="開啟三個工具流程圖原圖">
@@ -71,7 +71,7 @@
 <aside class="note">課堂先帶四個操作：開啟專案資料夾、描述需求、預覽成果、提出具體修改。完整留言與登入也需要資料庫及 LINE Login channel；講師應課前準備好設定與可部署的起始專案，或給同步實作同學設定指引。Git 本身沒有帳號。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>建立一個新的 Git Repository</h2>
 <p class="lead">Repository（專案倉庫）是放程式檔案、記錄每次修改的地方。這裡要建立自己的新專案，和前面的 Fork 課程範例是不同的事。</p>
 <h3>1. 從 GitHub 選擇 New repository</h3>
@@ -101,7 +101,7 @@
 <aside class="note">截圖中的 mozTheFuzz 是範例帳號，請使用自己的 Owner。新建空 Repository 之後，課堂再把本機專案連上它。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>一個讓會員註冊、留言的部落格</h2>
 
 <p class="lead">所有人可以閱讀文章，會員登入後可以發表留言。</p>
@@ -118,7 +118,7 @@
 <aside class="note">建議節奏：視角與工具 8 分鐘、需求分解 5 分鐘、部落格 15 分鐘、會員 12 分鐘、測試 8 分鐘、LINE 串接 12 分鐘。部署穿插在實作中。這是使用準備好起始專案的示範安排。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2 class="visually-hidden">先定義網站需要做什麼</h2>
 <figure class="course-illustration">
 <a href="assets/images/blog-feature-circles.webp" target="_blank" rel="noopener noreferrer" aria-label="開啟三大功能關係圖原圖">
@@ -129,7 +129,7 @@
 <aside class="note">先完成文章列表、文章內容頁與文章內文編輯器，確認每篇文章有標題、摘要與內容。留言與會員功能稍後接入。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>怎麼拆解成任務？</h2>
 <p class="lead">從 1 到 6，由上往下做。完成一項、確認結果，再進入下一項。</p>
 <ol class="task-roadmap" role="list" aria-label="由上到下的六項實作任務">
@@ -190,7 +190,7 @@
 </ol>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>這六個任務，畫面、規則與資料怎麼配合？</h2>
 <p class="lead">對照上一頁的任務編號，看看每個功能需要哪些部分一起完成。</p>
 <div class="task-table-wrap" role="region" aria-label="任務與前端、後端、資料庫的分工對照" tabindex="0">
@@ -229,7 +229,7 @@ flowchart TD
 
 
 
-<section class="slide protected">
+<section class="slide">
 <h2>Vibe Coding 吧！</h2>
 <p class="lead">在新的 <code>my-first-blog</code> 資料夾開始，跟 AI 一次完成一個任務。</p>
 <h3>先開啟今天的實作資料夾</h3>
@@ -255,7 +255,7 @@ flowchart TD
 
 ### 專案起點
 
-目前開啟的是新的空資料夾 `my-first-blog`，請在這裡建立專案。先提出技術選擇與六個任務的計畫，等我確認後才開始任務 1；每項驗收後等我確認，再做下一項。
+目前開啟的是新的空資料夾 `my-first-blog`，請在這裡建立專案。先提出技術選擇與六個任務的計畫，等我確認後才開始任務 1；開始任務 1 前，先在這個專案資料夾執行 `git init -b main`；每項驗收後等我確認，再做下一項。
 請提供安裝依賴與 `npm run dev` 啟動步驟，並設定對應的 dev 指令。建立 `.gitignore` 排除 `node_modules/`、`.env` 和 `.env.*`，只允許沒有真實秘密值的 `.env.example` 作為範本。
 
 我要實作一個可以讓會員留言的部落格功能，共有三大功能：
@@ -310,8 +310,26 @@ flowchart TD
 <aside class="note">帶學員先貼上需求，請 AI 回覆任務計畫；再從任務 1 開始逐項實作與驗收。若課堂時間有限，可由講師逐項複製單一任務，示範「提出需求 → 查看修改 → 驗收 → 修正」。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide workflow-slide">
 <h2>本地端 vs 雲端</h2>
+<div class="workflow-switch" role="group" aria-label="選擇閱讀方式">
+<span>閱讀方式</span>
+<button type="button" data-workflow-mode="agent" aria-pressed="true">Agent Friendly</button>
+<button type="button" data-workflow-mode="manual" aria-pressed="false">手動執行</button>
+</div>
+<div class="agent-friendly">
+<p class="agent-label">交給 Agent 的任務</p>
+<p class="agent-hint">複製這段內容，貼給你的 AI Agent 協助完成本頁目標：</p>
+<figure class="course-illustration local-cloud-illustration">
+<a href="assets/images/local-vs-cloud.webp" target="_blank" rel="noopener noreferrer" aria-label="放大查看本地測試與雲端部署圖">
+<img src="assets/images/local-vs-cloud.webp" width="1200" height="800" loading="lazy" decoding="async" alt="先在本地測試，再部署到雲端。本地端是自己的電腦，使用 npm run dev 開發、預覽和修改，只有這台電腦看得到。完成後部署到 Netlify 雲端，取得網址後可以分享給別人。">
+</a>
+<figcaption>先在自己的電腦測試，確認後再部署到雲端分享。</figcaption>
+</figure>
+<pre class="agent-prompt"><code>請先檢查這個專案的 package.json 與資料夾結構，告訴我如何在本機啟動網站、會看到哪個網址，以及如何停止。若沒有 dev 指令，先說明原因與建議，不要擅自改部署設定或猜測架構。</code></pre>
+</div>
+<div class="manual-execution">
+
 <p class="lead">先在自己的電腦試做與修改，再把完成的網站部署到網路上。</p>
 <figure class="course-illustration local-cloud-illustration">
 <a href="assets/images/local-vs-cloud.webp" target="_blank" rel="noopener noreferrer" aria-label="放大查看本地端與雲端對照圖">
@@ -328,11 +346,24 @@ flowchart TD
 <ol start="3"><li>等終端機顯示本地網址（通常以 <code>http://localhost:</code> 開頭），按住 Command／Ctrl 再點網址，或複製到瀏覽器開啟。</li><li>要停止網站時，回到終端機按 <code>Ctrl + C</code>。</li></ol>
 <p class="check">完成條件：能開啟本機網址，看到自己的部落格，並完成目前任務的操作驗收。下一頁再把版本推送到 GitHub。</p>
 <p class="check">如果出現「missing script: dev」，代表這個專案沒有設定啟動指令；把訊息交給 AI，請它檢查專案設定並告訴你正確啟動方式。</p>
+</div>
 <aside class="note">「本地端」是自己的電腦，「雲端」是連上網路後可分享的部署環境。npm run dev 需在有 dev 指令的專案資料夾執行；各專案實際顯示的本地網址與連接埠可能不同。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide workflow-slide">
 <h2>第一次把專案推送到 GitHub</h2>
+<div class="workflow-switch" role="group" aria-label="選擇閱讀方式">
+<span>閱讀方式</span>
+<button type="button" data-workflow-mode="agent" aria-pressed="true">Agent Friendly</button>
+<button type="button" data-workflow-mode="manual" aria-pressed="false">手動執行</button>
+</div>
+<div class="agent-friendly">
+<p class="agent-label">交給 Agent 的任務</p>
+<p class="agent-hint">複製這段內容，貼給你的 AI Agent 協助完成本頁目標：</p>
+<pre class="agent-prompt"><code>請先檢查目前資料夾、Git 狀態、分支、遠端 Repository，以及 .gitignore。列出準備推送的檔案，確認沒有 .env、金鑰或其他秘密；先不要 stage、commit 或 push，等我確認後再帶我完成並驗證 GitHub 上的版本。</code></pre>
+</div>
+<div class="manual-execution">
+
 <p class="lead">把電腦裡的 <code>my-first-blog</code>，連到你先前建立的同名 GitHub Repository。以下指令逐行執行，每行按 Enter。</p>
 <h3>1. 確認位置，開始記錄版本</h3>
 <p>在 Antigravity 開啟 <code>my-first-blog</code>，選 <strong>Terminal → New Terminal</strong>，確認終端機路徑最後是 <code>my-first-blog</code>。若同一個終端機正在跑網站，先按 <code>Ctrl + C</code> 停止。</p>
@@ -379,10 +410,12 @@ git diff --cached --name-only
 git commit -m "說明這次修改"
 git push</code></pre>每次先確認提交清單。已設定好遠端與追蹤分支後，不必重做第一次設定。</div>
 <p class="check">參考：<a href="https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github" target="_blank" rel="noopener noreferrer">GitHub：將本機專案推送到 GitHub</a>。</p>
-</section>
+</div></section>
 
-<section class="slide protected">
+
+<section class="slide">
 <h2>串連到 Netlify</h2>
+
 <p class="lead">把 GitHub Repository 交給 Netlify，之後推送新版本，就能自動重新部署網站。</p>
 
 <h3>1. 開始新增 Netlify 專案</h3>
@@ -440,7 +473,7 @@ git push</code></pre>每次先確認提交清單。已設定好遠端與追蹤�
 <aside class="note">連接 GitHub 時，若 Netlify 要求安裝或授權 GitHub App，只授權課程需要的 Repository。截圖中的 Owner、Team 和專案名稱都是示範值，請以自己的帳號為準。Netlify 從連接的 Git Repository 自動部署；實際 Build command 與 Publish directory 會依專案而不同。官方說明：<a href="https://docs.netlify.com/start/quickstarts/deploy-from-repository/" target="_blank" rel="noopener noreferrer">Deploy from your repository</a>。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>整合Line資源</h2>
 <p class="lead">照這四步，從建立 LINE 資源一路做到正式網站驗收。</p>
 <ol class="task-roadmap">
@@ -452,7 +485,8 @@ git push</code></pre>每次先確認提交清單。已設定好遠端與追蹤�
 <p class="check">順序提示：先建立資源再改程式；本機測試通過後，才部署到正式網址。</p>
 </section>
 
-<section class="slide protected">
+
+<section class="slide">
 <h2>建立Line 資源</h2>
 <p class="lead">先在 LINE Developers 建立 Provider 和 LINE Login Channel，為課堂測試準備專用設定。</p>
 <ol>
@@ -475,7 +509,7 @@ git push</code></pre>每次先確認提交清單。已設定好遠端與追蹤�
 <aside class="note">LINE Developers 官方入口：<a href="https://developers.line.biz/en/" target="_blank" rel="noopener noreferrer">LINE Developers</a>。Channel 建立後的 Web app、Callback URL 和本機 ngrok 設定，接續再設定。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>Vibe Code again</h2>
 <p class="lead">LINE Login Channel 建立後，再請 AI 把 LINE 登入接進現有的會員留言網站。</p>
 <div class="prompt vibe-prompt">
@@ -525,8 +559,52 @@ LINE 環境變數有兩個，確保兩個環境變數的命名為：
 <p class="check">完成條件：網站出現 LINE 登入入口，AI 已說明本機啟動方式、Callback 路徑和所需環境變數。</p>
 </section>
 
-<section class="slide protected">
+
+<section class="slide">
+<h2>Ngrok 是幹什麼的？</h2>
+<p class="lead"><code>localhost</code> 只在自己的電腦上連得到。LINE Login 完成後，瀏覽器需要回到網站上登記的 Callback URL；外部無法直接開啟你電腦裡的 localhost。</p>
+<p>ngrok 會提供一個暫時的公開 HTTPS 網址，再把送到這個網址的請求轉送到你電腦上的網站。這樣登入流程就能回到本機開發中的網站測試。</p>
+<figure class="responsibility-diagram ngrok-explainer-diagram">
+<div class="mermaid-output" role="img" aria-label="使用者瀏覽器前往 LINE Login，登入後被導向 ngrok 公開 HTTPS Callback 網址；ngrok 再將請求轉送到開發者電腦上的 localhost 網站，網站處理登入並回傳結果。"></div>
+<script type="text/plain" class="mermaid-source">
+sequenceDiagram
+    participant Browser as 使用者瀏覽器
+    participant Line as LINE Login
+    participant Ngrok as ngrok 公開 HTTPS 網址
+    participant Local as 本機網站 localhost:8888
+    Browser->>Line: 點選 LINE 登入
+    Line-->>Browser: 登入後導向已登記的 Callback URL
+    Browser->>Ngrok: 開啟 HTTPS Callback 網址
+    Ngrok->>Local: Tunnel 轉送到 localhost
+    Local-->>Ngrok: 處理登入並回傳結果
+    Ngrok-->>Browser: 顯示登入後的網站
+</script>
+<figcaption>ngrok 像一條臨時通道：外部 HTTPS 網址接收請求，再轉到仍在執行的本機網站。</figcaption>
+<p class="diagram-fallback">使用者瀏覽器 → LINE Login → 登入後返回 ngrok HTTPS Callback 網址 → ngrok 轉送到 localhost → 本機網站處理登入並回傳結果。</p>
+</figure>
+<p class="check">測試時要同時保持本機網站與 ngrok 執行中。ngrok 網址通常是暫時的，網址變更後要更新 LINE Developers Console 裡的 Callback URL。</p>
+</section>
+
+<section class="slide workflow-slide">
 <h2>本地測試 ①｜啟動網站與 ngrok</h2>
+<div class="workflow-switch" role="group" aria-label="選擇閱讀方式">
+<span>閱讀方式</span>
+<button type="button" data-workflow-mode="agent" aria-pressed="true">Agent Friendly</button>
+<button type="button" data-workflow-mode="manual" aria-pressed="false">手動執行</button>
+</div>
+<div class="agent-friendly">
+<h3>1. 先設定本機的測試環境變數</h3>
+<p>在 Antigravity 開啟 <code>my-first-blog</code>。依 AI 說明，在專案的 <code>.env</code> 填入 <code>my-first-blog-test</code> Channel 的值：</p>
+<pre class="command-line"><code>LINE_CHANNEL_ID=填入測試Channel的ID
+LINE_CHANNEL_SECRET=填入同一個測試Channel的Secret</code></pre>
+<p class="check">確認 <code>.env</code> 已被 <code>.gitignore</code> 排除；值只在自己的編輯器填入。若專案另需 <code>SESSION_SECRET</code>，依 AI 說明在本機產生並設定。</p>
+<h3>2. 把以下指令貼給 Agent</h3>
+<pre class="agent-prompt"><code>幫我重新啟動本地端的 dev 環境。啟用後，開啟一個 ngrok http 指向剛剛的 dev 環境。
+
+把 ngrok 的最終網址告訴我。</code></pre>
+</div>
+<div class="manual-execution">
+
 <p class="lead">這一頁只確認一件事：透過 ngrok 的 HTTPS 網址，能開啟你電腦上的部落格。</p>
 <h3>1. 先設定本機的測試環境變數</h3>
 <p>在 Antigravity 開啟 <code>my-first-blog</code>。依 AI 說明，在專案的 <code>.env</code> 填入 <code>my-first-blog-test</code> Channel 的值：</p>
@@ -554,9 +632,10 @@ ngrok http &lt;終端機 A 顯示的連接埠&gt;</code></pre>
 <p>複製終端機 B 的 <strong>Forwarding HTTPS 網址</strong>，貼到瀏覽器；若出現 ngrok 的訪問提示，確認是自己的網址後繼續。應看到和本機相同的部落格。</p>
 <div class="prompt"><b>完成條件</b>終端機 A 跑網站、終端機 B 跑 ngrok，兩個都保持開啟；瀏覽器從 ngrok HTTPS 網址能看到部落格。下一頁再設定 LINE 登入。</div>
 <p class="check">如果 HTTPS 網址打不開，先確認本機網站仍在執行，以及 ngrok 使用的連接埠與終端機 A 相同。</p>
-</section>
+</div></section>
 
-<section class="slide protected">
+
+<section class="slide">
 <h2>本地測試 ②｜設定 Callback 並登入 LINE</h2>
 <p class="lead">沿用上一頁的 ngrok HTTPS 網址，讓 LINE 登入後能回到你的本機網站。兩個終端機都要保持開啟。</p>
 <h3>1. 選對測試用 Channel</h3>
@@ -577,7 +656,8 @@ ngrok http &lt;終端機 A 顯示的連接埠&gt;</code></pre>
 <p class="check">若失敗，先核對測試 Channel、Callback 完整網址、兩個終端機是否仍在執行。修改 <code>.env</code> 後，在終端機 A 按 <code>Ctrl + C</code>，再執行 <code>npm run dev</code>。仍失敗時提供錯誤畫面與操作步驟給講師，遮住秘密值。</p>
 </section>
 
-<section class="slide protected">
+
+<section class="slide">
 <h2>邁向正式環境</h2>
 <p class="lead">本機 LINE Login 測試通過後，再把設定移到 Netlify 正式網站。先對照下面的表格，確認每個值屬於哪一個環境。</p>
 <div class="task-table-wrap" role="region" aria-label="本機測試與正式環境設定對照" tabindex="0">
@@ -657,7 +737,8 @@ git push origin &lt;部署分支名稱&gt;</code></pre>
 <p class="check">完成條件：正式 LINE Login Channel 已 Published，Netlify 網站已公開，正式網址的登入與留言測試都通過。</p>
 </section>
 
-<section class="slide protected">
+
+<section class="slide">
 <h2>最終 CI/CD 架構 Overview</h2>
 <p class="lead">從規劃、在本機開發與測試，到推送程式碼並由 Netlify 部署。</p>
 <figure class="responsibility-diagram">
@@ -695,7 +776,7 @@ flowchart TD
 <aside class="note">此圖呈現課程的開發與部署路徑。ngrok 用於本機測試，正式環境使用正式網域與正式 LINE Login Channel；不要把測試 Channel 的 Callback URL 或秘密值帶到正式環境。</aside>
 </section>
 
-<section class="slide protected">
+<section class="slide">
 <h2>結語：先想清楚，再動手</h2>
 <div class="conclusion-intro">
 <div><h3 class="conclusion-toy">This is a toy</h3><p>這是一個教學原型，不是可以直接承受真實營運的產品。</p></div>
@@ -734,23 +815,11 @@ flowchart TD
 <div class="conclusion-close"><strong>把大問題切小。</strong>如果還是解決不了，就再切小一點；先完成一件能驗證的事，再往下一步。</div>
 </section>
 
+
 </main>
 
 <footer><a class="section-link" href="index.html">首頁</a><button id="prev" aria-label="上一張">上一張</button><button id="next" aria-label="下一張">下一張</button><select id="jump" aria-label="選擇投影片"></select><button id="print">列印 / PDF</button><span id="counter" aria-live="polite"></span></footer>
 
 <div id="progress"></div>
-
-<dialog id="password-dialog" aria-labelledby="password-title">
-<div id="password-form">
-<h2 id="password-title">輸入課程密碼</h2>
-
-<p>解鎖課程內容與課後閱讀。</p>
-<label for="course-password">密碼</label><input id="course-password" type="password" autocomplete="off" required aria-describedby="password-error">
-<div id="password-error" role="alert"></div>
-
-<div class="dialog-actions"><button type="button" id="password-unlock">解鎖</button><button type="button" id="password-cancel">取消</button></div>
-</div>
-</dialog>
-
 </body>
 </html>
